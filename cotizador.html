@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wonder Way by Vio | Solicitud de Cotización Mágica</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --morado-dark: #1E0C36;
+      --morado-main: #3F1D6B;
+      --morado-soft: #F4EFFB;
+      --rosa-vibrante: #D94680;
+      --rosa-pastel: #FCE7F0;
+      --dorado: #C69A43;
+      --dorado-light: #F9F4EB;
+      --negro-texto: #17171C;
+      --gris-texto: #5E5D6A;
+      --gris-borde: #E6E4EB;
+      --blanco: #FFFFFF;
+      --fondo: #FAF8FD;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--fondo);
+      color: var(--negro-texto);
+      line-height: 1.5;
+      padding: 24px 14px 50px;
+    }
+
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      background: var(--blanco);
+      border-radius: 28px;
+      box-shadow: 0 16px 40px rgba(30, 12, 54, 0.08);
+      overflow: hidden;
+      border: 1px solid rgba(198, 154, 67, 0.25);
+    }
+
+    /* ENCABEZADO */
+    .header {
+      background: linear-gradient(135deg, var(--morado-dark) 0%, var(--morado-main) 70%, #532383 100%);
+      color: var(--blanco);
+      padding: 38px 20px 30px;
+      text-align: center;
+      position: relative;
+    }
+
+    .header::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--dorado), var(--rosa-vibrante), var(--dorado));
+    }
+
+    /* LOGO */
+    .logo-container {
+      width: 100%;
+      max-width: 280px;
+      height: 150px;
+      margin: 0 auto 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.3));
+    }
+
+    .brand-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.95rem;
+      font-weight: 700;
+      color: var(--blanco);
+    }
+
+    .header-desc {
+      font-size: 0.94rem;
+      color: #E2DAED;
+      margin-top: 8px;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
+      font-weight: 300;
+    }
+
+    form {
+      padding: 26px 22px;
+    }
+
+    .section-block {
+      margin-bottom: 28px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--gris-borde);
+    }
+
+    .section-block:last-of-type {
+      border-bottom: none;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--morado-dark);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-subtitle {
+      font-size: 0.85rem;
+      color: var(--gris-texto);
+      margin-bottom: 16px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 580px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .input-group {
+      margin-bottom: 14px;
+    }
+
+    label.field-label {
+      display: block;
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: var(--morado-dark);
+      margin-bottom: 6px;
+    }
+
+    input[type="text"],
+    input[type="date"],
+    input[type="number"] {
+      width: 100%;
+      padding: 13px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--gris-borde);
+      background-color: #FAF9FC;
+      font-size: 0.95rem;
+      color: var(--negro-texto);
+      outline: none;
+      transition: all 0.25s ease;
+    }
+
+    input:focus {
+      border-color: var(--morado-main);
+      background-color: var(--blanco);
+      box-shadow: 0 0 0 3px rgba(63, 29, 107, 0.1);
+    }
+
+    .help-badge {
+      display: inline-block;
+      background: var(--dorado-light);
+      color: #8c691f;
+      border: 1px solid #ebd9b5;
+      font-size: 0.76rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-top: 6px;
+    }
+
+    .notice-box {
+      background: #FDF9F2;
+      border: 1px solid #F1DEC0;
+      border-radius: 14px;
+      padding: 12px 14px;
+      font-size: 0.85rem;
+      color: #7A5714;
+      line-height: 1.4;
+      margin-top: 10px;
+    }
+
+    /* Tarjetas de Selección */
+    .card-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    @media (max-width: 540px) {
+      .card-options {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card-choice {
+      position: relative;
+    }
+
+    .card-choice input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .card-box {
+      border: 1.5px solid var(--gris-borde);
+      border-radius: 14px;
+      padding: 14px 15px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      transition: all 0.2s ease;
+      background: var(--blanco);
+    }
+
+    .card-box:hover {
+      border-color: #d1b8ea;
+      transform: translateY(-1px);
+    }
+
+    .card-choice input:checked + .card-box {
+      border-color: var(--morado-main);
+      background-color: var(--morado-soft);
+      box-shadow: 0 6px 14px rgba(63, 29, 107, 0.08);
+    }
+
+    .card-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--morado-dark);
+      margin-bottom: 4px;
+    }
+
+    .card-desc {
+      font-size: 0.8rem;
+      color: var(--gris-texto);
+      line-height: 1.35;
+    }
+
+    /* Tarjetas Dining Plan */
+    .dining-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .dining-card {
+      position: relative;
+    }
+
+    .dining-card input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .dining-box {
+      border: 1.5px solid var(--gris-borde);
+      border-radius: 14px;
+      padding: 12px 14px;
+      background: var(--blanco);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .dining-card input:checked + .dining-box {
+      border-color: var(--rosa-vibrante);
+      background-color: var(--rosa-pastel);
+    }
+
+    .dining-title {
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: var(--morado-dark);
+      margin-bottom: 4px;
+    }
+
+    .dining-list {
+      font-size: 0.78rem;
+      color: var(--gris-texto);
+      line-height: 1.4;
+      padding-left: 18px;
+    }
+
+    .dining-card input:checked + .dining-box .dining-list {
+      color: #5c1433;
+    }
+
+    /* Checkbox pills */
+    .pill-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .pill-checkbox input {
+      display: none;
+    }
+
+    .pill-label {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--gris-borde);
+      background: #FDFBFF;
+      font-size: 0.85rem;
+      color: var(--negro-texto);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .pill-label-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+    }
+
+    .pill-label-desc {
+      font-size: 0.77rem;
+      color: var(--gris-texto);
+      padding-left: 24px;
+    }
+
+    .pill-checkbox input:checked + .pill-label {
+      background: var(--rosa-pastel);
+      border-color: var(--rosa-vibrante);
+      color: #8c1e4d;
+    }
+
+    .pill-checkbox input:checked + .pill-label .pill-label-desc {
+      color: #73133d;
+    }
+
+    .pill-grid-half {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    @media (max-width: 540px) {
+      .pill-grid-half {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .sub-section {
+      background: #FAF8FD;
+      border-radius: 16px;
+      padding: 16px;
+      border: 1px dashed #d8cde8;
+      margin-top: 14px;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .btn-submit {
+      width: 100%;
+      background: linear-gradient(135deg, var(--morado-dark) 0%, var(--morado-main) 100%);
+      color: var(--blanco);
+      border: 2px solid var(--dorado);
+      border-radius: 16px;
+      padding: 16px 20px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      transition: all 0.25s ease;
+      box-shadow: 0 10px 22px rgba(30, 12, 54, 0.2);
+    }
+
+    .btn-submit:hover {
+      background: linear-gradient(135deg, #130526 0%, #2f1253 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px rgba(30, 12, 54, 0.28);
+    }
+
+    .btn-submit svg {
+      width: 22px;
+      height: 22px;
+      fill: currentColor;
+    }
+
+    .footer-note {
+      font-size: 0.78rem;
+      color: #7b788a;
+      text-align: center;
+      margin-top: 14px;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <!-- ENCABEZADO CON TU LOGO OFICIAL -->
+  <header class="header">
+    <div class="logo-container">
+      <img src="logo.png" alt="Wonder Way by Vio" class="logo-img" />
+    </div>
+    <h1 class="brand-title">Diseñemos tu Viaje Mágico</h1>
+    <p class="header-desc">Personaliza cada detalle de tu viaje. Te prepararemos la mejor propuesta oficial con promociones vigentes.</p>
+  </header>
+
+  <!-- FORMULARIO -->
+  <form id="quoteForm">
+    <!-- 1. DATOS BÁSICOS -->
+    <div class="section-block">
+      <div class="section-title">1. ¿Quiénes viajan y cuándo?</div>
+      <div class="section-subtitle">Para revisar disponibilidad de fechas y tipos de habitación.</div>
+
+      <div class="input-group">
+        <label class="field-label" for="fullName">Nombre completo del titular *</label>
+        <input type="text" id="fullName" placeholder="Ej. Mariana González" required />
+      </div>
+
+      <div class="grid-2">
+        <div class="input-group">
+          <label class="field-label" for="checkIn">Fecha de Check-in *</label>
+          <input type="date" id="checkIn" required />
+        </div>
+        <div class="input-group">
+          <label class="field-label" for="checkOut">Fecha de Check-out *</label>
+          <input type="date" id="checkOut" required />
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="input-group">
+          <label class="field-label" for="adultCount">Adultos (+10 años) *</label>
+          <input type="number" id="adultCount" min="1" max="14" value="2" required />
+        </div>
+        <div class="input-group">
+          <label class="field-label" for="kidCount">Menores (0 a 9 años)</label>
+          <input type="number" id="kidCount" min="0" max="10" value="0" />
+        </div>
+      </div>
+
+      <div id="kidsAgeContainer" class="sub-section hidden">
+        <label class="field-label">Edades de los menores al momento de viajar *</label>
+        <div id="kidsAgeInputs" class="grid-2"></div>
+        <div class="help-badge">Las edades son necesarias para calcular boletos de menor o infantes sin costo.</div>
+      </div>
+    </div>
+
+    <!-- 2. DESTINO PRINCIPAL -->
+    <div class="section-block">
+      <div class="section-title">2. Elige tu Destino Principal</div>
+      <div class="section-subtitle">Selecciona el paquete central de tus vacaciones.</div>
+
+      <div class="card-options">
+        <label class="card-choice">
+          <input type="radio" name="destination" value="Walt Disney World (Orlando)" checked />
+          <div class="card-box">
+            <span class="card-title">Walt Disney World</span>
+            <span class="card-desc">Orlando, Florida: Magic Kingdom, Epcot, Hollywood Studios y Animal Kingdom.</span>
+          </div>
+        </label>
+
+        <label class="card-choice">
+          <input type="radio" name="destination" value="Universal Orlando Resort" />
+          <div class="card-box">
+            <span class="card-title">Universal Orlando Resort</span>
+            <span class="card-desc">Orlando, Florida: 3 parques temáticos (Epic Universe, Universal Studios e Islands of Adventure).</span>
+          </div>
+        </label>
+
+        <label class="card-choice">
+          <input type="radio" name="destination" value="Disneyland Resort (California)" />
+          <div class="card-box">
+            <span class="card-title">Disneyland California</span>
+            <span class="card-desc">Anaheim, California: Disneyland Park y Disney California Adventure.</span>
+          </div>
+        </label>
+
+        <label class="card-choice">
+          <input type="radio" name="destination" value="Universal Studios Hollywood" />
+          <div class="card-box">
+            <span class="card-title">Universal Hollywood</span>
+            <span class="card-desc">Los Angeles, California: Studio Tour de películas y Super Nintendo World.</span>
+          </div>
+        </label>
+      </div>
+    </div>
+
+    <!-- 3. HOSPEDAJE -->
+    <div class="section-block">
+      <div class="section-title">3. Hospedaje Deseado</div>
+      <div class="section-subtitle">¿Dónde prefieres hospedarte durante tu estancia?</div>
+
+      <div class="input-group">
+        <label class="field-label">Ubicación del hotel</label>
+        <div class="card-options">
+          <label class="card-choice">
+            <input type="radio" name="hotelLocation" value="Dentro de la propiedad" checked />
+            <div class="card-box">
+              <strong id="hotelLocOfficialLabel" class="card-title">Hotel Oficial</strong>
+              <span id="hotelLocOfficialDesc" class="card-desc">Beneficios de entrada anticipada y transporte temático.</span>
+            </div>
+          </label>
+          <label class="card-choice">
+            <input type="radio" name="hotelLocation" value="Fuera de la propiedad" />
+            <div class="card-box">
+              <strong class="card-title">Hotel Fuera</strong>
+              <span class="card-desc">Hoteles aliados o asociados cercanos a la zona.</span>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <div class="input-group" style="margin-top: 14px;">
+        <label class="field-label">Categoría</label>
+        <div class="card-options" id="hotelCategoriesGrid">
+          <label class="card-choice" id="catValueChoice">
+            <input type="radio" name="hotelCategory" value="Económico (Value)" checked />
+            <div class="card-box">
+              <strong class="card-title">Económico (Value)</strong>
+              <span class="card-desc">Gran balance calidad-precio y ambientación divertida.</span>
+            </div>
+          </label>
+
+          <label class="card-choice" id="catModChoice">
+            <input type="radio" name="hotelCategory" value="Moderado" />
+            <div class="card-box">
+              <strong class="card-title">Moderado</strong>
+              <span class="card-desc">Albercas temáticas, mayor espacio y comodidad.</span>
+            </div>
+          </label>
+
+          <label class="card-choice" id="catDeluxeChoice">
+            <input type="radio" name="hotelCategory" value="Lujo (Deluxe)" />
+            <div class="card-box">
+              <strong class="card-title">Lujo (Deluxe)</strong>
+              <span class="card-desc">Ubicación prémium y máxima conveniencia.</span>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <div id="amenitiesBlock" class="sub-section hidden">
+        <label class="field-label">Comodidades especiales que te interesan:</label>
+        <div class="pill-grid-half" id="amenitiesOptions"></div>
+      </div>
+    </div>
+
+    <!-- 4. DÍAS DE PARQUES PRINCIPALES -->
+    <div class="section-block">
+      <div class="section-title">4. Días de Parques Principales</div>
+      <div class="section-subtitle">¿Cuántos días de entradas requieres para tu paquete principal?</div>
+
+      <div class="input-group">
+        <label class="field-label" for="parkDays">Cantidad de días de entradas</label>
+        <input type="number" id="parkDays" value="4" min="1" max="10" required />
+        <div id="minDaysNotice" class="help-badge">Paquete con mínimo 3 días de parque.</div>
+      </div>
+    </div>
+
+    <!-- 5. EXTRAS DEL DESTINO PRINCIPAL -->
+    <div class="section-block">
+      <div class="section-title">5. Extras y Experiencias</div>
+      <div class="section-subtitle" id="extrasSubtitle">Agrega facilidades para optimizar tu tiempo y recuerdos.</div>
+
+      <!-- Contenedor dinámico de extras -->
+      <div class="pill-grid" id="mainExtrasGrid"></div>
+
+      <!-- Aviso cuando se elige hotel fuera en WDW -->
+      <div id="wdwOffsiteNotice" class="notice-box hidden">
+        ℹ️ <strong>Importante sobre paquetes Disney:</strong> El <em>Plan de Comidas Disney</em> y el <em>Memory Maker con descuento</em> son beneficios exclusivos al reservar paquetes con <strong>Hotel Disney</strong>. Si te hospedas fuera de Disney, no es posible agregarlos a la reserva de paquete.
+      </div>
+
+      <!-- DESGLOSE DEL PLAN DE COMIDAS DISNEY -->
+      <div id="diningPlanOptions" class="sub-section hidden">
+        <label class="field-label">Elige la modalidad del Disney Dining Plan:</label>
+        
+        <div class="dining-grid">
+          <label class="dining-card">
+            <input type="radio" name="diningPlanSelected" value="Quick-Service Dining Plan" checked />
+            <div class="dining-box">
+              <div class="dining-title">🍔 Quick-Service Dining Plan</div>
+              <ul class="dining-list">
+                <li><strong>2 Quick-Service meals</strong> por persona, por noche</li>
+                <li><strong>1 snack</strong> por persona, por noche</li>
+                <li><strong>1 Resort Refillable Drink Mug</strong> por persona</li>
+              </ul>
+            </div>
+          </label>
+
+          <label class="dining-card">
+            <input type="radio" name="diningPlanSelected" value="Table-Service Dining Plan" />
+            <div class="dining-box">
+              <div class="dining-title">🍽️ Table-Service Dining Plan</div>
+              <ul class="dining-list">
+                <li><strong>1 Table-Service meal</strong> por persona, por noche</li>
+                <li><strong>1 Quick-Service meal</strong> por persona, por noche</li>
+                <li><strong>1 snack</strong> por persona, por noche</li>
+                <li><strong>1 Resort Refillable Drink Mug</strong> por persona</li>
+              </ul>
+            </div>
+          </label>
+
+          <label class="dining-card">
+            <input type="radio" name="diningPlanSelected" value="Deluxe Table-Service Dining Plan" />
+            <div class="dining-box">
+              <div class="dining-title">✨ Deluxe Table-Service Dining Plan</div>
+              <ul class="dining-list">
+                <li><strong>2 Table-Service meals</strong> por persona, por noche</li>
+                <li><strong>1 Quick-Service meal</strong> por persona, por noche</li>
+                <li><strong>1 snack</strong> por persona, por noche</li>
+                <li><strong>1 Resort Refillable Drink Mug</strong> por persona</li>
+              </ul>
+            </div>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. COMPLEMENTO DE TICKETS DIRECTO -->
+    <div class="section-block">
+      <div class="section-title" id="crossSectionTitle">6. ¿Deseas agregar tickets adicionales?</div>
+      <div class="section-subtitle" id="crossSectionSubtitle">Visita otro complejo de parques aprovechando tu estancia en la ciudad.</div>
+
+      <div class="card-options">
+        <label class="card-choice">
+          <input type="radio" name="crossAdd" value="No" checked />
+          <div class="card-box">
+            <strong class="card-title">No por ahora</strong>
+            <span class="card-desc">Enfocarme únicamente en mi destino principal.</span>
+          </div>
+        </label>
+        <label class="card-choice">
+          <input type="radio" name="crossAdd" value="Sí" />
+          <div class="card-box">
+            <strong id="crossAddTitle" class="card-title">¡Sí, agregar entradas!</strong>
+            <span id="crossAddDesc" class="card-desc">Sumar días de parque adicionales.</span>
+          </div>
+        </label>
+      </div>
+
+      <div id="crossDetailsBlock" class="sub-section hidden">
+        <div class="input-group">
+          <label class="field-label" id="crossDaysLabel">¿Cuántos días de tickets complementarios?</label>
+          <input type="number" id="crossParkDays" value="1" min="1" max="5" />
+        </div>
+
+        <div class="input-group" id="crossFastPassGroup" style="margin-top: 10px;">
+          <label class="field-label">Pase rápido para estos días:</label>
+          <label class="pill-checkbox">
+            <input type="checkbox" id="crossFastPass" value="Sí" />
+            <div class="pill-label" id="crossFastPassText">
+              <div class="pill-label-row">
+                <span>⚡</span> <span>Agregar pase rápido</span>
+              </div>
+            </div>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOTÓN WHATSAPP -->
+    <button type="submit" class="btn-submit">
+      <svg viewBox="0 0 24 24">
+        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+      </svg>
+      Enviar mi Solicitud por WhatsApp
+    </button>
+    <p class="footer-note">Al hacer clic se abrirá tu WhatsApp con el mensaje estructurado para Wonder Way by Vio.</p>
+  </form>
+</div>
+
+<script>
+  const PHONE_NUMBER = "526561994244";
+
+  const checkInInput = document.getElementById("checkIn");
+  const checkOutInput = document.getElementById("checkOut");
+  const kidCountInput = document.getElementById("kidCount");
+  const kidsAgeContainer = document.getElementById("kidsAgeContainer");
+  const kidsAgeInputs = document.getElementById("kidsAgeInputs");
+  const destinationRadios = document.querySelectorAll('input[name="destination"]');
+  const hotelLocationRadios = document.querySelectorAll('input[name="hotelLocation"]');
+  const hotelLocOfficialLabel = document.getElementById("hotelLocOfficialLabel");
+  const hotelLocOfficialDesc = document.getElementById("hotelLocOfficialDesc");
+  const catValueChoice = document.getElementById("catValueChoice");
+  const catModChoice = document.getElementById("catModChoice");
+  const catDeluxeChoice = document.getElementById("catDeluxeChoice");
+  const amenitiesBlock = document.getElementById("amenitiesBlock");
+  const amenitiesOptions = document.getElementById("amenitiesOptions");
+  const parkDaysInput = document.getElementById("parkDays");
+  const minDaysNotice = document.getElementById("minDaysNotice");
+  const mainExtrasGrid = document.getElementById("mainExtrasGrid");
+  const diningPlanOptions = document.getElementById("diningPlanOptions");
+  const wdwOffsiteNotice = document.getElementById("wdwOffsiteNotice");
+
+  const crossSectionTitle = document.getElementById("crossSectionTitle");
+  const crossSectionSubtitle = document.getElementById("crossSectionSubtitle");
+  const crossAddRadios = document.querySelectorAll('input[name="crossAdd"]');
+  const crossDetailsBlock = document.getElementById("crossDetailsBlock");
+  const crossAddTitle = document.getElementById("crossAddTitle");
+  const crossAddDesc = document.getElementById("crossAddDesc");
+  const crossDaysLabel = document.getElementById("crossDaysLabel");
+  const crossFastPassGroup = document.getElementById("crossFastPassGroup");
+  const crossFastPassText = document.getElementById("crossFastPassText");
+
+  // 1. BLOQUEAR FECHAS PASADAS EN CALENDARIOS
+  function initCalendarLimits() {
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, "0");
+    const dd = String(today.getDate()).padStart(2, "0");
+    const minDateStr = `${yyyy}-${mm}-${dd}`;
+
+    checkInInput.min = minDateStr;
+
+    // Al cambiar check-in, check-out debe ser al menos al día siguiente
+    checkInInput.addEventListener("change", function() {
+      if (this.value) {
+        const checkInDate = new Date(this.value);
+        checkInDate.setDate(checkInDate.getDate() + 1);
+        const nextY = checkInDate.getFullYear();
+        const nextM = String(checkInDate.getMonth() + 1).padStart(2, "0");
+        const nextD = String(checkInDate.getDate()).padStart(2, "0");
+        const nextDateStr = `${nextY}-${nextM}-${nextD}`;
+
+        checkOutInput.min = nextDateStr;
+        if (checkOutInput.value && checkOutInput.value <= this.value) {
+          checkOutInput.value = nextDateStr;
+        }
+      }
+    });
+  }
+  initCalendarLimits();
+
+  // 2. EDADES DINÁMICAS DE NIÑOS
+  kidCountInput.addEventListener("input", function() {
+    const count = parseInt(this.value, 10) || 0;
+    kidsAgeInputs.innerHTML = "";
+    if (count > 0) {
+      kidsAgeContainer.classList.remove("hidden");
+      for (let i = 1; i <= count; i++) {
+        const div = document.createElement("div");
+        div.className = "input-group";
+        div.innerHTML = `
+          <label class="field-label" style="font-size:0.8rem;">Edad Niño ${i}</label>
+          <input type="number" min="0" max="9" placeholder="Años (0-9)" class="kid-age-input" required />
+        `;
+        kidsAgeInputs.appendChild(div);
+      }
+    } else {
+      kidsAgeContainer.classList.add("hidden");
+    }
+  });
+
+  crossAddRadios.forEach(radio => {
+    radio.addEventListener("change", (e) => {
+      if (e.target.value === "Sí") {
+        crossDetailsBlock.classList.remove("hidden");
+      } else {
+        crossDetailsBlock.classList.add("hidden");
+      }
+    });
+  });
+
+  function getSelected(name) {
+    const el = document.querySelector(`input[name="${name}"]:checked`);
+    return el ? el.value : "";
+  }
+
+  function updateUI() {
+    const dest = getSelected("destination");
+    const loc = getSelected("hotelLocation");
+
+    // Hospedaje
+    if (dest === "Disneyland Resort (California)") {
+      hotelLocOfficialLabel.textContent = "Hotel Disney";
+      hotelLocOfficialDesc.textContent = "Grand Californian, Disneyland Hotel o Pixar Place.";
+      if (loc === "Dentro de la propiedad") {
+        catValueChoice.classList.add("hidden");
+        catModChoice.classList.add("hidden");
+        catDeluxeChoice.querySelector('input').checked = true;
+        amenitiesBlock.classList.add("hidden");
+      } else {
+        catValueChoice.classList.remove("hidden");
+        catModChoice.classList.remove("hidden");
+        amenitiesBlock.classList.remove("hidden");
+        setupAnaheimAmenities();
+      }
+    } else if (dest === "Universal Studios Hollywood") {
+      hotelLocOfficialLabel.textContent = "Hilton / Sheraton CityWalk";
+      hotelLocOfficialDesc.textContent = "Hoteles conectados caminando a Universal CityWalk.";
+      catValueChoice.classList.remove("hidden");
+      catModChoice.classList.remove("hidden");
+      amenitiesBlock.classList.remove("hidden");
+      setupHollywoodAmenities();
+    } else if (dest === "Walt Disney World (Orlando)") {
+      hotelLocOfficialLabel.textContent = "Hotel Disney";
+      hotelLocOfficialDesc.textContent = "Resorts Disney con transporte gratuito y horas mágicas.";
+      catValueChoice.classList.remove("hidden");
+      catModChoice.classList.remove("hidden");
+      amenitiesBlock.classList.add("hidden");
+    } else if (dest === "Universal Orlando Resort") {
+      hotelLocOfficialLabel.textContent = "Hotel Universal";
+      hotelLocOfficialDesc.textContent = "Resorts oficiales con entrada anticipada a Epic Universe y Harry Potter.";
+      catValueChoice.classList.remove("hidden");
+      catModChoice.classList.remove("hidden");
+      amenitiesBlock.classList.add("hidden");
+    }
+
+    // Mínimos de días de parque
+    if (dest === "Walt Disney World (Orlando)") {
+      minDaysNotice.textContent = "ℹ️ Los paquetes Disney World requieren un mínimo de 3 días de parque.";
+      minDaysNotice.classList.remove("hidden");
+      if (parseInt(parkDaysInput.value, 10) < 3) parkDaysInput.value = 3;
+      parkDaysInput.min = "3";
+    } else if (dest === "Disneyland Resort (California)") {
+      minDaysNotice.textContent = "ℹ️ Los paquetes Disneyland California requieren un mínimo de 2 días de parque.";
+      minDaysNotice.classList.remove("hidden");
+      if (parseInt(parkDaysInput.value, 10) < 2) parkDaysInput.value = 2;
+      parkDaysInput.min = "2";
+    } else {
+      minDaysNotice.classList.add("hidden");
+      parkDaysInput.min = "1";
+    }
+
+    // Renderizado de Extras según destino y si es hotel Disney
+    renderMainExtras(dest, loc);
+
+    // Complemento directo según destino
+    setupCrossOptions(dest);
+  }
+
+  function setupAnaheimAmenities() {
+    amenitiesOptions.innerHTML = `
+      <label class="pill-checkbox">
+        <input type="checkbox" name="amenity" value="Cruzando la calle caminando" />
+        <div class="pill-label">
+          <div class="pill-label-row"><span>🚶</span> Cruzando la calle caminando</div>
+        </div>
+      </label>
+      <label class="pill-checkbox">
+        <input type="checkbox" name="amenity" value="Transporte gratuito a Disneyland" />
+        <div class="pill-label">
+          <div class="pill-label-row"><span>🚌</span> Transporte gratuito a parques</div>
+        </div>
+      </label>
+      <label class="pill-checkbox">
+        <input type="checkbox" name="amenity" value="Desayuno incluido" />
+        <div class="pill-label">
+          <div class="pill-label-row"><span>🍳</span> Desayuno incluido</div>
+        </div>
+      </label>
+      <label class="pill-checkbox">
+        <input type="checkbox" name="amenity" value="Estacionamiento gratuito" />
+        <div class="pill-label">
+          <div class="pill-label-row"><span>🚗</span> Estacionamiento gratuito</div>
+        </div>
+      </label>
+    `;
+  }
+
+  function setupHollywoodAmenities() {
+    amenitiesOptions.innerHTML = `
+      <label class="pill-checkbox">
+        <input type="checkbox" name="amenity" value="A pasos de CityWalk" />
+        <div class="pill-label">
+          <div class="pill-label-row"><span>🚶</span> A pasos de CityWalk</div>
+        </div>
+      </label>
+      <label class="pill-checkbox">
+        <input type="checkbox" name="amenity" value="Transporte gratuito a Universal" />
+        <div class="pill-label">
+          <div class="pill-label-row"><span>🚌</span> Shuttle / Transporte gratis</div>
+        </div>
+      </label>
+      <label class="pill-checkbox">
+        <input type="checkbox" name="amenity" value="Desayuno incluido" />
+        <div class="pill-label">
+          <div class="pill-label-row"><span>🍳</span> Desayuno incluido</div>
+        </div>
+      </label>
+      <label class="pill-checkbox">
+        <input type="checkbox" name="amenity" value="Estacionamiento gratuito" />
+        <div class="pill-label">
+          <div class="pill-label-row"><span>🚗</span> Estacionamiento gratuito</div>
+        </div>
+      </label>
+    `;
+  }
+
+  function renderMainExtras(dest, loc) {
+    diningPlanOptions.classList.add("hidden");
+    wdwOffsiteNotice.classList.add("hidden");
+
+    if (dest === "Walt Disney World (Orlando)") {
+      if (loc === "Dentro de la propiedad") {
+        // En paquete Disney se puede agregar Dining Plan y Memory Maker con descuento
+        mainExtrasGrid.innerHTML = `
+          <label class="pill-checkbox">
+            <input type="checkbox" id="diningPlanCheck" name="mainExtra" value="Plan de Comidas Disney" />
+            <div class="pill-label">
+              <div class="pill-label-row"><span>🍔</span> Plan de Comidas Disney</div>
+              <div class="pill-label-desc">Elige entre servicio rápido o mesa para tu estancia.</div>
+            </div>
+          </label>
+          <label class="pill-checkbox">
+            <input type="checkbox" name="mainExtra" value="Memory Maker (Fotos ilimitadas con $25 USD de ahorro)" />
+            <div class="pill-label">
+              <div class="pill-label-row"><span>📸</span> Memory Maker (Fotos ilimitadas)</div>
+              <div class="pill-label-desc">¡Ahorras $25 USD al adquirirlo incluido en tu paquete con anticipación!</div>
+            </div>
+          </label>
+        `;
+
+        const diningCheck = document.getElementById("diningPlanCheck");
+        if (diningCheck) {
+          diningCheck.addEventListener("change", (e) => {
+            if (e.target.checked) {
+              diningPlanOptions.classList.remove("hidden");
+            } else {
+              diningPlanOptions.classList.add("hidden");
+            }
+          });
+        }
+      } else {
+        // En hotel fuera no se pueden agregar ni dining plan ni memory maker al paquete
+        mainExtrasGrid.innerHTML = "";
+        wdwOffsiteNotice.classList.remove("hidden");
+      }
+    } else if (dest === "Disneyland Resort (California)") {
+      mainExtrasGrid.innerHTML = `
+        <label class="pill-checkbox">
+          <input type="checkbox" name="mainExtra" value="Lightning Lane Multi Pass" />
+          <div class="pill-label">
+            <div class="pill-label-row"><span>⚡</span> Lightning Lane Multi Pass</div>
+            <div class="pill-label-desc">Pases rápidos para atracciones seleccionadas y descargas PhotoPass.</div>
+          </div>
+        </label>
+      `;
+    } else if (dest === "Universal Orlando Resort") {
+      mainExtrasGrid.innerHTML = `
+        <label class="pill-checkbox">
+          <input type="checkbox" name="mainExtra" value="Universal Express Pass" />
+          <div class="pill-label">
+            <div class="pill-label-row"><span>⚡</span> Universal Express Pass</div>
+            <div class="pill-label-desc">Evita filas regulares en tus atracciones favoritas.</div>
+          </div>
+        </label>
+      `;
+    } else if (dest === "Universal Studios Hollywood") {
+      mainExtrasGrid.innerHTML = `
+        <label class="pill-checkbox">
+          <input type="checkbox" name="mainExtra" value="Universal Express Pass" />
+          <div class="pill-label">
+            <div class="pill-label-row"><span>⚡</span> Universal Express Pass</div>
+            <div class="pill-label-desc">Acceso rápido 1 vez por atracción participante.</div>
+          </div>
+        </label>
+      `;
+    }
+  }
+
+  function setupCrossOptions(dest) {
+    if (dest === "Walt Disney World (Orlando)") {
+      crossSectionTitle.textContent = "6. ¿Deseas agregar tickets para Universal Orlando Resort?";
+      crossSectionSubtitle.textContent = "Incluye acceso a 3 parques: Epic Universe, Universal Studios Florida e Islands of Adventure.";
+      crossAddTitle.textContent = "¡Sí! Agregar tickets para Universal Orlando (3 Parques)";
+      crossAddDesc.textContent = "Añadir días de parque para Epic Universe, Universal Studios e Islands of Adventure.";
+      crossDaysLabel.textContent = "¿Cuántos días de tickets para Universal Orlando (3 parques)?";
+      crossFastPassGroup.classList.remove("hidden");
+      crossFastPassText.innerHTML = `<div class="pill-label-row"><span>⚡</span> Agregar Universal Express Pass</div>`;
+    } else if (dest === "Universal Orlando Resort") {
+      crossSectionTitle.textContent = "6. ¿Deseas agregar tickets para Walt Disney World?";
+      crossSectionSubtitle.textContent = "Visita Magic Kingdom, Epcot, Hollywood Studios o Animal Kingdom.";
+      crossAddTitle.textContent = "¡Sí! Agregar tickets para Walt Disney World";
+      crossAddDesc.textContent = "Añadir días de parque temático Disney.";
+      crossDaysLabel.textContent = "¿Cuántos días de entradas para Walt Disney World?";
+      crossFastPassGroup.classList.add("hidden");
+      document.getElementById("crossFastPass").checked = false;
+    } else if (dest === "Disneyland Resort (California)") {
+      crossSectionTitle.textContent = "6. ¿Deseas agregar tickets para Universal Studios Hollywood?";
+      crossSectionSubtitle.textContent = "Conoce el Studio Tour y Super Nintendo World en Los Ángeles.";
+      crossAddTitle.textContent = "¡Sí! Agregar tickets para Universal Hollywood";
+      crossAddDesc.textContent = "Añadir entrada a Universal Studios Hollywood.";
+      crossDaysLabel.textContent = "¿Cuántos días de entrada para Universal Studios Hollywood?";
+      crossFastPassGroup.classList.remove("hidden");
+      crossFastPassText.innerHTML = `<div class="pill-label-row"><span>⚡</span> Agregar Universal Express Pass</div>`;
+    } else if (dest === "Universal Studios Hollywood") {
+      crossSectionTitle.textContent = "6. ¿Deseas agregar tickets para Disneyland California?";
+      crossSectionSubtitle.textContent = "Disfruta de Disneyland Park y Disney California Adventure en Anaheim.";
+      crossAddTitle.textContent = "¡Sí! Agregar tickets para Disneyland California";
+      crossAddDesc.textContent = "Añadir días de parque para Disneyland Resort.";
+      crossDaysLabel.textContent = "¿Cuántos días de parque para Disneyland California?";
+      crossFastPassGroup.classList.remove("hidden");
+      crossFastPassText.innerHTML = `<div class="pill-label-row"><span>⚡</span> Agregar Lightning Lane para Disneyland</div>`;
+    }
+  }
+
+  destinationRadios.forEach(r => r.addEventListener("change", updateUI));
+  hotelLocationRadios.forEach(r => r.addEventListener("change", updateUI));
+
+  updateUI();
+
+  // Envío a WhatsApp
+  document.getElementById("quoteForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById("fullName").value.trim();
+    const inDate = document.getElementById("checkIn").value;
+    const outDate = document.getElementById("checkOut").value;
+    const adults = document.getElementById("adultCount").value;
+    const kids = document.getElementById("kidCount").value;
+
+    let durationStr = "";
+    if (inDate && outDate) {
+      const d1 = new Date(inDate);
+      const d2 = new Date(outDate);
+      const diffTime = d2 - d1;
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      if (diffDays > 0) durationStr = ` (${diffDays} noches)`;
+    }
+
+    let kidsAgeStr = "Ninguno";
+    if (parseInt(kids, 10) > 0) {
+      const ages = [];
+      document.querySelectorAll(".kid-age-input").forEach(inp => {
+        if (inp.value) ages.push(inp.value + " años");
+      });
+      kidsAgeStr = ages.length > 0 ? ages.join(", ") : `${kids} menores (edades pendientes)`;
+    }
+
+    const dest = getSelected("destination");
+    const loc = getSelected("hotelLocation");
+    const cat = getSelected("hotelCategory");
+
+    const amenities = [];
+    document.querySelectorAll('input[name="amenity"]:checked').forEach(c => amenities.push(c.value));
+    const amenitiesStr = amenities.length > 0 ? `\n   - Comodidades clave: ${amenities.join(", ")}` : "";
+
+    const parkDays = document.getElementById("parkDays").value;
+
+    const extras = [];
+    document.querySelectorAll('input[name="mainExtra"]:checked').forEach(c => {
+      if (c.value === "Plan de Comidas Disney") {
+        const planChoice = getSelected("diningPlanSelected");
+        extras.push(`Plan de Comidas: ${planChoice}`);
+      } else {
+        extras.push(c.value);
+      }
+    });
+    const extrasStr = extras.length > 0 ? extras.join(", ") : "Ninguno seleccionado";
+
+    const crossAdd = getSelected("crossAdd");
+    let crossMsg = "No requerido";
+    if (crossAdd === "Sí") {
+      const crossDays = document.getElementById("crossParkDays").value;
+      const hasFastPass = document.getElementById("crossFastPass").checked;
+      const fastPass = hasFastPass ? " (Con pase rápido)" : " (Solo entradas)";
+      let targetPark = "";
+      if (dest === "Walt Disney World (Orlando)") targetPark = "Universal Orlando (3 parques: Epic Universe, Studios, Islands)";
+      else if (dest === "Universal Orlando Resort") targetPark = "Walt Disney World";
+      else if (dest === "Disneyland Resort (California)") targetPark = "Universal Studios Hollywood";
+      else if (dest === "Universal Studios Hollywood") targetPark = "Disneyland California";
+
+      crossMsg = `Sí, ${crossDays} día(s) para ${targetPark}${dest === "Universal Orlando Resort" ? "" : fastPass}`;
+    }
+
+    const msg = 
+`✨ *SOLICITUD DE COTIZACIÓN - WONDER WAY BY VIO* ✨
+Hola Vio, me gustaría solicitar una cotización personalizada:
+
+👤 *Titular:* ${name}
+📅 *Fechas:* ${inDate} al ${outDate}${durationStr}
+👥 *Viajeros:* ${adults} Adulto(s) | ${kids} Menor(es)
+👶 *Edades:* ${kidsAgeStr}
+
+🏰 *Destino Principal:* ${dest}
+🏨 *Hospedaje:* ${loc} (${cat})${amenitiesStr}
+🎟 *Días de parque principal:* ${parkDays} día(s)
+⭐ *Extras principales:* ${extrasStr}
+
+🎡 *Entradas parque adicional:* ${crossMsg}
+
+¡Quedo a la espera de las mejores opciones y promociones!`;
+
+    const encodedMsg = encodeURIComponent(msg);
+    const whatsappURL = `https://wa.me/${PHONE_NUMBER}?text=${encodedMsg}`;
+    window.open(whatsappURL, "_blank");
+  });
+</script>
+
+</body>
+</html>

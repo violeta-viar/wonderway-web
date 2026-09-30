@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wonder Way by Vio | Agente Certificada Disney & Universal</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --morado-dark: #1E0C36;
+      --morado-main: #3F1D6B;
+      --morado-soft: #F4EFFB;
+      --rosa-vibrante: #D94680;
+      --rosa-pastel: #FCE7F0;
+      --dorado: #C69A43;
+      --dorado-light: #F9F4EB;
+      --negro-texto: #17171C;
+      --gris-texto: #5E5D6A;
+      --gris-borde: #E6E4EB;
+      --blanco: #FFFFFF;
+      --fondo: #FAF8FD;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--fondo);
+      color: var(--negro-texto);
+      line-height: 1.6;
+      padding: 24px 14px 50px;
+    }
+
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      background: var(--blanco);
+      border-radius: 28px;
+      box-shadow: 0 16px 40px rgba(30, 12, 54, 0.08);
+      overflow: hidden;
+      border: 1px solid rgba(198, 154, 67, 0.25);
+    }
+
+    /* ENCABEZADO */
+    .header {
+      background: linear-gradient(135deg, var(--morado-dark) 0%, var(--morado-main) 70%, #532383 100%);
+      color: var(--blanco);
+      padding: 44px 24px 36px;
+      text-align: center;
+      position: relative;
+    }
+
+    .header::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--dorado), var(--rosa-vibrante), var(--dorado));
+    }
+
+    .logo-container {
+      width: 100%;
+      max-width: 320px;
+      height: 185px;
+      margin: 0 auto 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.4));
+    }
+
+    .brand-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.15rem;
+      font-weight: 700;
+      color: var(--blanco);
+      line-height: 1.25;
+      margin-top: 6px;
+      margin-bottom: 4px;
+    }
+
+    /* CONTENIDO */
+    .content {
+      padding: 30px 22px;
+    }
+
+    /* BLOQUE INFORMATIVO */
+    .letter-card {
+      background: #FAF8FD;
+      border: 1px solid rgba(198, 154, 67, 0.25);
+      border-radius: 22px;
+      padding: 24px 20px;
+      margin-bottom: 28px;
+    }
+
+    .letter-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.55rem;
+      color: var(--morado-dark);
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    .points-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .points-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.92rem;
+      color: var(--negro-texto);
+      line-height: 1.45;
+    }
+
+    .points-list li span.bullet-icon {
+      font-size: 1rem;
+      line-height: 1.3;
+      flex-shrink: 0;
+    }
+
+    /* APARTADOS */
+    .layaway-banner {
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px dashed #dcd3eb;
+    }
+
+    .layaway-title {
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: var(--morado-main);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .layaway-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    @media (max-width: 540px) {
+      .layaway-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .layaway-box {
+      background: var(--blanco);
+      border: 1.5px solid #E4D8F3;
+      border-radius: 14px;
+      padding: 12px 14px;
+    }
+
+    .layaway-box strong {
+      display: block;
+      color: var(--morado-dark);
+      font-size: 0.92rem;
+      margin-bottom: 4px;
+    }
+
+    .layaway-badge {
+      display: inline-block;
+      background: var(--rosa-pastel);
+      color: #8C1E4D;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+      margin-bottom: 6px;
+    }
+
+    .layaway-box p {
+      font-size: 0.78rem;
+      color: var(--gris-texto);
+      line-height: 1.35;
+      margin-bottom: 4px;
+    }
+
+    .layaway-note {
+      font-size: 0.7rem;
+      color: #856404;
+      background: #FFF3CD;
+      padding: 2px 6px;
+      border-radius: 4px;
+      display: inline-block;
+    }
+
+    .letter-closing {
+      font-size: 0.88rem;
+      color: var(--morado-dark);
+      line-height: 1.5;
+      margin-top: 16px;
+      font-weight: 500;
+    }
+
+    .letter-signature {
+      text-align: right;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      font-style: italic;
+      color: var(--morado-main);
+      margin-top: 10px;
+    }
+
+    /* DESTINOS DESPLEGABLES */
+    .section-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--morado-dark);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .dest-accordion-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+
+    details.dest-accordion {
+      background: var(--morado-soft);
+      border: 1px solid #E6DDF2;
+      border-radius: 14px;
+      overflow: hidden;
+      transition: all 0.2s ease;
+    }
+
+    details.dest-accordion[open] {
+      background: var(--blanco);
+      border-color: var(--morado-main);
+      box-shadow: 0 4px 14px rgba(63, 29, 107, 0.08);
+    }
+
+    summary.dest-summary {
+      padding: 14px 16px;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--morado-dark);
+      user-select: none;
+    }
+
+    summary.dest-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    summary.dest-summary .chevron {
+      color: var(--morado-main);
+      transition: transform 0.2s ease;
+      font-size: 0.8rem;
+    }
+
+    details[open] summary.dest-summary .chevron {
+      transform: rotate(180deg);
+    }
+
+    .dest-details-body {
+      padding: 0 16px 14px;
+      font-size: 0.84rem;
+      color: var(--gris-texto);
+      line-height: 1.5;
+      border-top: 1px dashed #EDE5F7;
+      margin-top: 4px;
+      padding-top: 10px;
+    }
+
+    /* BOTÓN AL COTIZADOR */
+    .cta-container {
+      text-align: center;
+      margin-bottom: 34px;
+      padding: 24px 16px;
+      background: #FAF8FD;
+      border-radius: 22px;
+      border: 1px dashed var(--dorado);
+    }
+
+    .cta-container h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.45rem;
+      color: var(--morado-dark);
+      margin-bottom: 16px;
+    }
+
+    .btn-main-cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      width: 100%;
+      background: linear-gradient(135deg, var(--morado-dark) 0%, var(--morado-main) 100%);
+      color: var(--blanco);
+      text-decoration: none;
+      border: 2px solid var(--dorado);
+      border-radius: 16px;
+      padding: 18px 22px;
+      font-size: 1.12rem;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 10px 24px rgba(30, 12, 54, 0.22);
+      text-align: center;
+    }
+
+    .btn-main-cta:hover {
+      background: linear-gradient(135deg, #130526 0%, #2f1253 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(30, 12, 54, 0.3);
+    }
+
+    .btn-main-cta svg {
+      width: 22px;
+      height: 22px;
+      fill: var(--dorado);
+    }
+
+    /* SECCIÓN DE RESEÑAS CON CARRUSEL HORIZONTAL */
+    .reviews-section {
+      margin-bottom: 32px;
+      padding-bottom: 26px;
+      border-bottom: 1px solid var(--gris-borde);
+    }
+
+    .carousel-hint {
+      font-size: 0.78rem;
+      color: var(--gris-texto);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .reviews-carousel {
+      display: flex;
+      gap: 14px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 12px;
+      margin-bottom: 16px;
+    }
+
+    /* Ocultar barra de scroll tosca pero permitir deslizar */
+    .reviews-carousel::-webkit-scrollbar {
+      height: 6px;
+    }
+    .reviews-carousel::-webkit-scrollbar-track {
+      background: #f1edfa;
+      border-radius: 10px;
+    }
+    .reviews-carousel::-webkit-scrollbar-thumb {
+      background: #d3c4e8;
+      border-radius: 10px;
+    }
+
+    .review-card {
+      flex: 0 0 85%;
+      max-width: 320px;
+      scroll-snap-align: start;
+      background: #FAF8FD;
+      border: 1px solid var(--gris-borde);
+      border-radius: 18px;
+      padding: 16px 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 4px 12px rgba(30, 12, 54, 0.03);
+    }
+
+    @media (min-width: 600px) {
+      .review-card {
+        flex: 0 0 280px;
+      }
+    }
+
+    .review-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+
+    .review-author {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--morado-dark);
+    }
+
+    .review-stars {
+      color: #E5A823;
+      font-size: 0.95rem;
+      letter-spacing: 2px;
+    }
+
+    .review-dest-badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--rosa-vibrante);
+      background: var(--rosa-pastel);
+      padding: 3px 9px;
+      border-radius: 10px;
+      margin-bottom: 8px;
+      align-self: flex-start;
+    }
+
+    .review-comment {
+      font-size: 0.84rem;
+      color: var(--gris-texto);
+      line-height: 1.45;
+      font-style: italic;
+    }
+
+    .add-review-toggle {
+      background: var(--morado-soft);
+      border: 1px dashed var(--morado-main);
+      color: var(--morado-main);
+      width: 100%;
+      padding: 12px;
+      border-radius: 14px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+
+    .add-review-toggle:hover {
+      background: #E8DFF5;
+    }
+
+    .review-form-box {
+      margin-top: 14px;
+      background: #FAF8FD;
+      border: 1px solid var(--gris-borde);
+      border-radius: 16px;
+      padding: 18px;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .form-field {
+      margin-bottom: 12px;
+    }
+
+    .form-field label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--morado-dark);
+      margin-bottom: 5px;
+    }
+
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--gris-borde);
+      background: var(--blanco);
+      font-size: 0.9rem;
+      outline: none;
+    }
+
+    .btn-send-review {
+      width: 100%;
+      background: var(--morado-main);
+      color: var(--blanco);
+      border: none;
+      padding: 13px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: background 0.2s;
+    }
+
+    .btn-send-review:hover {
+      background: #2f1253;
+    }
+
+    /* CERTIFICACIONES OFICIALES */
+    .cert-box {
+      background: #FAF8FD;
+      border-radius: 22px;
+      border: 1px solid rgba(198, 154, 67, 0.35);
+      padding: 24px 18px 20px;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .cert-heading {
+      font-size: 0.82rem;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--dorado);
+      margin-bottom: 18px;
+    }
+
+    .cert-logos-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 34px;
+      flex-wrap: wrap;
+    }
+
+    .cert-item {
+      height: 115px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s;
+    }
+
+    .cert-item:hover {
+      transform: scale(1.03);
+    }
+
+    .cert-item img {
+      max-height: 100%;
+      width: auto;
+      max-width: 280px;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.06));
+    }
+
+    /* REDES SOCIALES */
+    .social-section {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .social-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--morado-dark);
+      margin-bottom: 14px;
+    }
+
+    .social-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    @media (max-width: 520px) {
+      .social-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      border-radius: 14px;
+      text-decoration: none;
+      color: var(--blanco);
+      font-size: 0.88rem;
+      font-weight: 600;
+      transition: all 0.22s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .social-link:hover {
+      transform: translateY(-2px);
+    }
+
+    .social-link svg {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      fill: currentColor;
+    }
+
+    .btn-ig { background: linear-gradient(45deg, #F09433 0%, #E6683C 25%, #DC2743 50%, #CC2366 75%, #BC1888 100%); }
+    .btn-tt { background: #000000; border: 1px solid #333333; }
+    .btn-fb { background: #1877F2; }
+    .btn-wa { background: #25D366; color: #0b4f23; }
+
+    /* FOOTER */
+    .footer {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #7b788a;
+      padding-top: 18px;
+      border-top: 1px solid var(--gris-borde);
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <!-- ENCABEZADO -->
+  <header class="header">
+    <div class="logo-container">
+      <img src="logo.png" alt="Wonder Way by Vio" class="logo-img" />
+    </div>
+    <h1 class="brand-title">Your wonder way begins here</h1>
+  </header>
+
+  <!-- CONTENIDO -->
+  <main class="content">
+
+    <!-- 1. POR QUÉ PLANIFICAR CONMIGO -->
+    <div class="letter-card">
+      <h2 class="letter-title">¿Por qué planificar tu viaje conmigo?</h2>
+      
+      <ul class="points-list">
+        <li>
+          <span class="bullet-icon">✨</span>
+          <span><strong>Sin costo extra:</strong> mi asesoría es 100% gratuita.</span>
+        </li>
+        <li>
+          <span class="bullet-icon">🎟️</span>
+          <span><strong>Tarifas oficiales:</strong> Los precios son exactamente los mismos que encontrarías directamente con Disney o Universal pero sumando mi acompañamiento continuo.</span>
+        </li>
+        <li>
+          <span class="bullet-icon">🟣</span>
+          <span>Tips y recomendaciones para aprovechar mejor tu viaje.</span>
+        </li>
+        <li>
+          <span class="bullet-icon">🟣</span>
+          <span>Resolución de dudas antes, durante y después de tus vacaciones.</span>
+        </li>
+        <li>
+          <span class="bullet-icon">🟣</span>
+          <span>Apoyo con pagos, cambios y seguimiento de tu reservación.</span>
+        </li>
+        <li>
+          <span class="bullet-icon">🟣</span>
+          <span>Información sobre promociones y beneficios disponibles.</span>
+        </li>
+        <li>
+          <span class="bullet-icon">🟣</span>
+          <span>Acompañamiento para que planees tu viaje con mayor tranquilidad.</span>
+        </li>
+      </ul>
+
+      <!-- BENEFICIOS DE APARTADO -->
+      <div class="layaway-banner">
+        <div class="layaway-title">🎉 Beneficios exclusivos en paquetes (Hotel + Boletos):</div>
+        
+        <div class="layaway-grid">
+          <div class="layaway-box">
+            <strong>🏰 Disney</strong>
+            <span class="layaway-badge">Aparta con $200 USD</span>
+            <p>Modifica o cancela sin penalización hasta 30 días antes de viajar.</p>
+            <span class="layaway-note">Aplica en hotel + tickets</span>
+          </div>
+
+          <div class="layaway-box">
+            <strong>🌎 Universal Orlando</strong>
+            <span class="layaway-badge">Aparta con $50 USD / persona</span>
+            <p>Modifica o cancela sin penalización hasta 40 días antes de viajar.</p>
+            <span class="layaway-note">Aplica en hotel + tickets</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="letter-closing">
+        Mi trabajo es ayudarte a que disfrutes la magia de planear tus vacaciones sin estrés, con asesoría personalizada y acompañamiento en cada paso.
+      </div>
+
+      <div class="letter-signature">Violeta 💜</div>
+    </div>
+
+    <!-- 2. DESTINOS INTERACTIVOS (DESPLEGABLES) -->
+    <div class="section-title">Destinos Especializados</div>
+
+    <div class="dest-accordion-grid">
+      <!-- WDW -->
+      <details class="dest-accordion">
+        <summary class="dest-summary">
+          <span>🏰 Walt Disney World</span>
+          <span class="chevron">▼</span>
+        </summary>
+        <div class="dest-details-body">
+          Complejo en Orlando, Florida. Cuenta con 4 parques temáticos (Magic Kingdom, Epcot, Disney's Hollywood Studios y Disney's Animal Kingdom), 2 parques acuáticos, más de 25 hoteles temáticos oficiales con transporte gratuito y el distrito comercial Disney Springs.
+        </div>
+      </details>
+
+      <!-- UNIVERSAL ORLANDO -->
+      <details class="dest-accordion">
+        <summary class="dest-summary">
+          <span>⚡ Universal Orlando Resort</span>
+          <span class="chevron">▼</span>
+        </summary>
+        <div class="dest-details-body">
+          Destino en Orlando, Florida. Incluye 3 parques temáticos: Universal Studios Florida, Islands of Adventure y el nuevo Universal Epic Universe, más el parque acuático Volcano Bay, hoteles oficiales con entrada anticipada y Universal CityWalk.
+        </div>
+      </details>
+
+      <!-- DISNEYLAND CA -->
+      <details class="dest-accordion">
+        <summary class="dest-summary">
+          <span>🎡 Disneyland California</span>
+          <span class="chevron">▼</span>
+        </summary>
+        <div class="dest-details-body">
+          El resort original creado por Walt Disney en Anaheim, California. Compuesto por 2 parques temáticos (Disneyland Park y Disney California Adventure), hoteles oficiales a pasos de la entrada y Downtown Disney District.
+        </div>
+      </details>
+
+      <!-- UNIVERSAL HOLLYWOOD -->
+      <details class="dest-accordion">
+        <summary class="dest-summary">
+          <span>🎬 Universal Studios Hollywood</span>
+          <span class="chevron">▼</span>
+        </summary>
+        <div class="dest-details-body">
+          Ubicado en Los Ángeles, California. Famoso por su auténtico Studio Tour de sets de cine reales, Super Nintendo World, atracciones inmersivas de películas y el paseo nocturno Universal CityWalk Hollywood.
+        </div>
+      </details>
+    </div>
+
+    <!-- 3. BOTÓN AL COTIZADOR -->
+    <div class="cta-container">
+      <h3>¿Listo para vivir la magia?</h3>
+      
+      <a href="cotizador.html" class="btn-main-cta">
+        <svg viewBox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+        </svg>
+        Diseñar y cotizar mi viaje
+      </a>
+    </div>
+
+    <!-- 4. RESEÑAS EN CARRUSEL DESLIZANTE -->
+    <div class="reviews-section">
+      <div class="section-title">Experiencias Mágicas de Viajeros</div>
+      <div class="carousel-hint">👈 Desliza para ver más opiniones 👉</div>
+
+      <!-- Contenedor del Carrusel -->
+      <div class="reviews-carousel" id="reviewsContainer">
+        
+        <!-- Tarjeta 1 -->
+        <div class="review-card">
+          <div>
+            <div class="review-header">
+              <span class="review-author">Familia Mendoza</span>
+              <span class="review-stars">★★★★★</span>
+            </div>
+            <span class="review-dest-badge">Walt Disney World</span>
+            <p class="review-comment">"La mejor decisión fue planear con Vio. Nos ayudó a elegir el hotel ideal con transporte y sus tips de horarios nos ahorraron horas de fila. ¡100% recomendada!"</p>
+          </div>
+        </div>
+
+        <!-- Tarjeta 2 -->
+        <div class="review-card">
+          <div>
+            <div class="review-header">
+              <span class="review-author">Sofía & Carlos R.</span>
+              <span class="review-stars">★★★★★</span>
+            </div>
+            <span class="review-dest-badge">Universal Orlando</span>
+            <p class="review-comment">"Increíble atención desde el primer mensaje hasta que regresamos a casa. Nos consiguió una promoción buenísima para los 3 parques. ¡Una experiencia inolvidable!"</p>
+          </div>
+        </div>
+
+      </div>
+
+      <button type="button" class="add-review-toggle" id="toggleReviewBtn">
+        <span>✍️</span> ¿Ya viajaste conmigo? Déjame tu reseña
+      </button>
+
+      <!-- Formulario para enviar a WhatsApp -->
+      <div class="review-form-box hidden" id="reviewFormBox">
+        <form id="newReviewForm">
+          <div class="form-field">
+            <label for="revName">Tu nombre o Familia *</label>
+            <input type="text" id="revName" placeholder="Ej. Familia López o Andrea M." required />
+          </div>
+
+          <div class="form-field">
+            <label for="revDest">Destino visitado *</label>
+            <select id="revDest" required>
+              <option value="Walt Disney World">Walt Disney World (Orlando)</option>
+              <option value="Universal Orlando Resort">Universal Orlando Resort</option>
+              <option value="Disneyland California">Disneyland California</option>
+              <option value="Universal Studios Hollywood">Universal Studios Hollywood</option>
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label for="revStars">Calificación *</label>
+            <select id="revStars" required>
+              <option value="5">★★★★★ (5 estrellas - ¡Excelente!)</option>
+              <option value="4">★★★★☆ (4 estrellas - Muy buena)</option>
+              <option value="3">★★★☆☆ (3 estrellas - Buena)</option>
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label for="revComment">Cuéntanos tu experiencia *</label>
+            <textarea id="revComment" rows="3" placeholder="¿Cómo fue planificar tu viaje con Wonder Way by Vio?" required></textarea>
+          </div>
+
+          <button type="submit" class="btn-send-review">
+            <span>💬</span> Enviar Reseña por WhatsApp
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- 5. CERTIFICACIONES OFICIALES (HASTA ABAJO) -->
+    <div class="cert-box">
+      <div class="cert-heading">Respaldo y Certificación Oficial</div>
+      
+      <div class="cert-logos-wrap">
+        <div class="cert-item">
+          <img src="disney.png" alt="Authorized Disney Vacation Planner" />
+        </div>
+        <div class="cert-item">
+          <img src="universal.png" alt="Universal Destinations & Experiences Authorized Retailer" />
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. REDES SOCIALES -->
+    <div class="social-section">
+      <div class="social-title">Sígueme y Contáctame</div>
+      <div class="social-grid">
+        <a href="https://www.instagram.com/wonder_way_by_vio" target="_blank" rel="noopener noreferrer" class="social-link btn-ig">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          <span>@wonder_way_by_vio</span>
+        </a>
+
+        <a href="https://www.tiktok.com/@violeta_viar" target="_blank" rel="noopener noreferrer" class="social-link btn-tt">
+          <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.29 0 .58.04.85.12V9.41a6.33 6.33 0 0 0-.85-.06A6.34 6.34 0 0 0 3.1 15.69a6.34 6.34 0 0 0 10.82 4.48 6.3 6.3 0 0 0 1.86-4.5V8.84a8.28 8.28 0 0 0 5.06 1.73V7.12a4.83 4.83 0 0 1-1.25-.43z"/></svg>
+          <span>@violeta_viar</span>
+        </a>
+
+        <a href="https://www.facebook.com/wonder.way.by.vio" target="_blank" rel="noopener noreferrer" class="social-link btn-fb">
+          <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          <span>@wonder.way.by.vio</span>
+        </a>
+
+        <a href="https://wa.me/526561994244" target="_blank" rel="noopener noreferrer" class="social-link btn-wa">
+          <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+          <span>@violeta.viar</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <p><strong>Wonder Way by Vio</strong> &bull; Agente de Viajes Certificada</p>
+      <p style="margin-top: 4px; font-size: 0.75rem;">© 2026 Wonder Way by Vio. Todos los derechos reservados.</p>
+    </footer>
+
+  </main>
+</div>
+
+<script>
+  const PHONE_NUMBER = "526561994244";
+
+  const reviewsContainer = document.getElementById("reviewsContainer");
+  const toggleReviewBtn = document.getElementById("toggleReviewBtn");
+  const reviewFormBox = document.getElementById("reviewFormBox");
+  const newReviewForm = document.getElementById("newReviewForm");
+
+  toggleReviewBtn.addEventListener("click", () => {
+    reviewFormBox.classList.toggle("hidden");
+  });
+
+  newReviewForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById("revName").value.trim();
+    const dest = document.getElementById("revDest").value;
+    const rating = parseInt(document.getElementById("revStars").value, 10);
+    const comment = document.getElementById("revComment").value.trim();
+    const starsStr = "★".repeat(rating) + "☆".repeat(5 - rating);
+
+    // 1. Añadir al inicio del carrusel en la sesión del cliente
+    const card = document.createElement("div");
+    card.className = "review-card";
+    card.innerHTML = `
+      <div>
+        <div class="review-header">
+          <span class="review-author">${name}</span>
+          <span class="review-stars">${starsStr}</span>
+        </div>
+        <span class="review-dest-badge">${dest}</span>
+        <p class="review-comment">"${comment}"</p>
+      </div>
+    `;
+    reviewsContainer.prepend(card);
+    reviewsContainer.scrollTo({ left: 0, behavior: 'smooth' });
+
+    // 2. Notificación directa a tu WhatsApp
+    const msg = 
+`⭐ *NUEVA RESEÑA PARA WONDER WAY BY VIO* ⭐
+
+👤 *Cliente:* ${name}
+🏰 *Destino:* ${dest}
+⭐ *Calificación:* ${starsStr}
+💬 *Comentario:* "${comment}"`;
+
+    const encoded = encodeURIComponent(msg);
+    window.open(`https://wa.me/${PHONE_NUMBER}?text=${encoded}`, "_blank");
+
+    newReviewForm.reset();
+    reviewFormBox.classList.add("hidden");
+    alert("¡Muchas gracias! Tu reseña ha sido enviada con éxito. ✨");
+  });
+</script>
+
+</body>
+</html>
