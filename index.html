@@ -779,45 +779,9 @@
       <div class="section-title">Experiencias Mágicas de Viajeros</div>
       <div class="carousel-hint">👈 Desliza para ver más opiniones 👉</div>
 
-      <!-- Contenedor del Carrusel -->
+      <!-- Contenedor del Carrusel (se llena en automático) -->
       <div class="reviews-carousel" id="reviewsContainer">
         
-        <!-- Tarjeta 1 -->
-        <div class="review-card">
-          <div>
-            <div class="review-header">
-              <span class="review-author">Familia Mendoza</span>
-              <span class="review-stars">★★★★★</span>
-            </div>
-            <span class="review-dest-badge">Walt Disney World</span>
-            <p class="review-comment">"La mejor decisión fue planear con leta. Nos ayudó a elegir el hotel ideal con transporte y sus tips de horarios nos ahorraron horas de fila. ¡100% recomendada!"</p>
-          </div>
-        </div>
-
-        <!-- Tarjeta 2 -->
-        <div class="review-card">
-          <div>
-            <div class="review-header">
-              <span class="review-author">Sofía & Carlos R.</span>
-              <span class="review-stars">★★★★★</span>
-            </div>
-            <span class="review-dest-badge">Universal Orlando</span>
-            <p class="review-comment">"Increíble atención desde el primer mensaje hasta que regresamos a casa. Nos consiguió una promoción buenísima para los 3 parques. ¡Una experiencia inolvidable!"</p>
-          </div>
-        </div>
-        
-         <!-- Tarjeta 3 -->
-        <div class="review-card">
-          <div>
-            <div class="review-header">
-              <span class="review-author">Diana Salazar</span>
-              <span class="review-stars">★★★★★</span>
-            </div>
-            <span class="review-dest-badge">Disneyland California</span>
-            <p class="review-comment">"Super, todo muy bien explicado y facil. Gracias por todo leta"</p>
-          </div>
-        </div>
-
       </div>
 
       <button type="button" class="add-review-toggle" id="toggleReviewBtn">
@@ -919,6 +883,40 @@
   const toggleReviewBtn = document.getElementById("toggleReviewBtn");
   const reviewFormBox = document.getElementById("reviewFormBox");
   const newReviewForm = document.getElementById("newReviewForm");
+
+  // Leer y dibujar las reseñas desde resenas.json
+  async function cargarResenasDesdeJSON() {
+    try {
+      const res = await fetch("resenas.json");
+      if (!res.ok) throw new Error("No se pudo cargar resenas.json");
+      const data = await res.json();
+
+      reviewsContainer.innerHTML = "";
+
+      data.forEach((item) => {
+        const rating = item.estrellas || 5;
+        const starsStr = "★".repeat(rating) + "☆".repeat(5 - rating);
+
+        const card = document.createElement("div");
+        card.className = "review-card";
+        card.innerHTML = `
+          <div>
+            <div class="review-header">
+              <span class="review-author">${item.nombre}</span>
+              <span class="review-stars">${starsStr}</span>
+            </div>
+            <span class="review-dest-badge">${item.destino}</span>
+            <p class="review-comment">"${item.comentario}"</p>
+          </div>
+        `;
+        reviewsContainer.appendChild(card);
+      });
+    } catch (err) {
+      console.warn("Error cargando reseñas:", err);
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", cargarResenasDesdeJSON);
 
   toggleReviewBtn.addEventListener("click", () => {
     reviewFormBox.classList.toggle("hidden");
