@@ -888,7 +888,7 @@
   // Leer y dibujar las reseñas desde resenas.json
   async function cargarResenasDesdeJSON() {
     try {
-      const res = await fetch("resenas.json");
+      const res = await fetch("https://api.jsonbin.io/v3/b/6abf185effd5d1605344a4ae?meta=false");
       if (!res.ok) throw new Error("No se pudo cargar resenas.json");
       const data = await res.json();
 
