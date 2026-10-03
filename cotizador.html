@@ -160,8 +160,7 @@
     }
 
     input[type="text"],
-    input[type="date"],
-    input[type="number"] {
+    input[type="date"] {
       width: 100%;
       padding: 13px 14px;
       border-radius: 12px;
@@ -177,6 +176,53 @@
       border-color: var(--morado-main);
       background-color: var(--blanco);
       box-shadow: 0 0 0 3px rgba(63, 29, 107, 0.1);
+    }
+
+    /* CONTADORES INCREMENTALES TÁCTILES */
+    .stepper-control {
+      display: flex;
+      align-items: center;
+      background: #FAF9FC;
+      border: 1.5px solid var(--gris-borde);
+      border-radius: 14px;
+      overflow: hidden;
+      width: 100%;
+      max-width: 220px;
+    }
+
+    .stepper-btn {
+      width: 48px;
+      height: 48px;
+      background: #FAF9FC;
+      border: none;
+      color: var(--morado-main);
+      font-size: 1.4rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+      transition: background 0.15s ease;
+    }
+
+    .stepper-btn:active {
+      background: #E8DFF5;
+    }
+
+    .stepper-btn:disabled {
+      color: #BFBCC7;
+      cursor: not-allowed;
+      background: #F4F3F7;
+    }
+
+    .stepper-value {
+      flex: 1;
+      text-align: center;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--morado-dark);
+      user-select: none;
     }
 
     .help-badge {
@@ -429,7 +475,7 @@
   <!-- ENCABEZADO CON TU LOGO OFICIAL -->
   <header class="header">
     <div class="logo-container">
-      <img src="logo.png" alt="Wonder Way by " class="logo-img" />
+      <img src="logo.png" alt="Wonder Way by Vio" class="logo-img" />
     </div>
     <h1 class="brand-title">Diseñemos tu Viaje Mágico</h1>
     <p class="header-desc">Personaliza cada detalle de tu viaje. Te prepararemos la mejor propuesta oficial con promociones vigentes.</p>
@@ -460,12 +506,20 @@
 
       <div class="grid-2">
         <div class="input-group">
-          <label class="field-label" for="adultCount">Adultos (+10 años) *</label>
-          <input type="number" id="adultCount" min="1" max="14" value="2" required />
+          <label class="field-label">Adultos (+10 años) *</label>
+          <div class="stepper-control">
+            <button type="button" class="stepper-btn" id="btnAdultMinus">−</button>
+            <span class="stepper-value" id="adultVal">2</span>
+            <button type="button" class="stepper-btn" id="btnAdultPlus">+</button>
+          </div>
         </div>
         <div class="input-group">
-          <label class="field-label" for="kidCount">Menores (0 a 9 años)</label>
-          <input type="number" id="kidCount" min="0" max="10" value="0" />
+          <label class="field-label">Menores (0 a 9 años)</label>
+          <div class="stepper-control">
+            <button type="button" class="stepper-btn" id="btnKidMinus">−</button>
+            <span class="stepper-value" id="kidVal">0</span>
+            <button type="button" class="stepper-btn" id="btnKidPlus">+</button>
+          </div>
         </div>
       </div>
 
@@ -476,7 +530,7 @@
       </div>
     </div>
 
-    <!-- 2. DESTINO PRINCIPAL -->
+    <!-- 2. DESTINO PRINCIPAL (Seleccionada 1a opción por defecto) -->
     <div class="section-block">
       <div class="section-title">2. Elige tu Destino Principal</div>
       <div class="section-subtitle">Selecciona el paquete central de tus vacaciones.</div>
@@ -516,7 +570,7 @@
       </div>
     </div>
 
-    <!-- 3. HOSPEDAJE -->
+    <!-- 3. HOSPEDAJE (Seleccionadas 1as opciones por defecto) -->
     <div class="section-block">
       <div class="section-title">3. Hospedaje Deseado</div>
       <div class="section-subtitle">¿Dónde prefieres hospedarte durante tu estancia?</div>
@@ -541,14 +595,13 @@
         </div>
       </div>
 
-      <div class="input-group" style="margin-top: 14px;">
+      <div class="input-group" id="hotelCategoryGroup" style="margin-top: 14px;">
         <label class="field-label">Categoría</label>
         <div class="card-options" id="hotelCategoriesGrid">
           <label class="card-choice" id="catValueChoice">
             <input type="radio" name="hotelCategory" value="Económico (Value)" checked />
             <div class="card-box">
               <strong class="card-title">Económico (Value)</strong>
-              <span class="card-desc">Gran balance calidad-precio y ambientación divertida.</span>
             </div>
           </label>
 
@@ -556,7 +609,6 @@
             <input type="radio" name="hotelCategory" value="Moderado" />
             <div class="card-box">
               <strong class="card-title">Moderado</strong>
-              <span class="card-desc">Albercas temáticas, mayor espacio y comodidad.</span>
             </div>
           </label>
 
@@ -564,7 +616,6 @@
             <input type="radio" name="hotelCategory" value="Lujo (Deluxe)" />
             <div class="card-box">
               <strong class="card-title">Lujo (Deluxe)</strong>
-              <span class="card-desc">Ubicación prémium y máxima conveniencia.</span>
             </div>
           </label>
         </div>
@@ -582,9 +633,62 @@
       <div class="section-subtitle">¿Cuántos días de entradas requieres para tu paquete principal?</div>
 
       <div class="input-group">
-        <label class="field-label" for="parkDays">Cantidad de días de entradas</label>
-        <input type="number" id="parkDays" value="4" min="1" max="10" required />
-        <div id="minDaysNotice" class="help-badge">Paquete con mínimo 3 días de parque.</div>
+        <label class="field-label">Cantidad de días de entradas</label>
+        <div class="stepper-control">
+          <button type="button" class="stepper-btn" id="btnParkDaysMinus">−</button>
+          <span class="stepper-value" id="parkDaysVal">4</span>
+          <button type="button" class="stepper-btn" id="btnParkDaysPlus">+</button>
+        </div>
+        <div id="minDaysNotice" class="help-badge hidden">Paquete con mínimo 3 días de parque.</div>
+      </div>
+
+      <!-- SELECCIÓN DE PARQUES (VISIBLE SI EL DESTINO ES UNIVERSAL ORLANDO RESORT) -->
+      <div class="input-group hidden" id="mainUniversalParksSelector" style="margin-top: 16px;">
+        <label class="field-label">¿A qué parques de Universal deseas ir?</label>
+        <div class="pill-grid">
+          <label class="pill-checkbox">
+            <input type="checkbox" name="mainUniversalParkChoice" value="Universal Studios Florida" />
+            <div class="pill-label">
+              <div class="pill-label-row"><span>🎬</span> Universal Studios Florida</div>
+              <div class="pill-label-desc">Diagon Alley, Minions, Transformers y cine clásico.</div>
+            </div>
+          </label>
+          <label class="pill-checkbox">
+            <input type="checkbox" name="mainUniversalParkChoice" value="Universal Islands of Adventure" />
+            <div class="pill-label">
+              <div class="pill-label-row"><span>🦖</span> Universal Islands of Adventure</div>
+              <div class="pill-label-desc">VelociCoaster, Hogsmeade, Hagrid y superhéroes de Marvel.</div>
+            </div>
+          </label>
+          <label class="pill-checkbox">
+            <input type="checkbox" name="mainUniversalParkChoice" value="Epic Universe" />
+            <div class="pill-label">
+              <div class="pill-label-row"><span>🌌</span> Epic Universe</div>
+              <div class="pill-label-desc">El nuevo parque temático de clase mundial de Universal.</div>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <!-- SELECCIÓN DE PARQUES (VISIBLE SI EL DESTINO ES DISNEYLAND RESORT CALIFORNIA) -->
+      <div class="input-group hidden" id="mainDisneylandParksSelector" style="margin-top: 16px;">
+        <label class="field-label">¿A qué parques de Disneyland deseas ir?</label>
+        <div class="pill-grid">
+          <label class="pill-checkbox">
+            <input type="checkbox" name="mainDisneylandParkChoice" value="Disneyland Park" />
+            <div class="pill-label">
+              <div class="pill-label-row"><span>🏰</span> Disneyland Park</div>
+              <div class="pill-label-desc">El parque original de Walt Disney: Castillo de la Bella Durmiente, Star Wars: Galaxy's Edge y clásicos.</div>
+            </div>
+          </label>
+          <label class="pill-checkbox">
+            <input type="checkbox" name="mainDisneylandParkChoice" value="Disney California Adventure" />
+            <div class="pill-label">
+              <div class="pill-label-row"><span>🎡</span> Disney California Adventure</div>
+              <div class="pill-label-desc">Avengers Campus, Cars Land, Pixar Pier y atracciones de aventura.</div>
+            </div>
+          </label>
+        </div>
       </div>
     </div>
 
@@ -607,7 +711,7 @@
         
         <div class="dining-grid">
           <label class="dining-card">
-            <input type="radio" name="diningPlanSelected" value="Quick-Service Dining Plan" checked />
+            <input type="radio" name="diningPlanSelected" value="Quick-Service Dining Plan" />
             <div class="dining-box">
               <div class="dining-title">🍔 Quick-Service Dining Plan</div>
               <ul class="dining-list">
@@ -647,7 +751,7 @@
       </div>
     </div>
 
-    <!-- 6. COMPLEMENTO DE TICKETS DIRECTO -->
+    <!-- 6. COMPLEMENTO DE TICKETS DIRECTO (Seleccionada 1a opción por defecto) -->
     <div class="section-block">
       <div class="section-title" id="crossSectionTitle">6. ¿Deseas agregar tickets adicionales?</div>
       <div class="section-subtitle" id="crossSectionSubtitle">Visita otro complejo de parques aprovechando tu estancia en la ciudad.</div>
@@ -672,10 +776,134 @@
       <div id="crossDetailsBlock" class="sub-section hidden">
         <div class="input-group">
           <label class="field-label" id="crossDaysLabel">¿Cuántos días de tickets complementarios?</label>
-          <input type="number" id="crossParkDays" value="1" min="1" max="5" />
+          <div class="stepper-control">
+            <button type="button" class="stepper-btn" id="btnCrossDaysMinus">−</button>
+            <span class="stepper-value" id="crossDaysVal">1</span>
+            <button type="button" class="stepper-btn" id="btnCrossDaysPlus">+</button>
+          </div>
         </div>
 
-        <div class="input-group" id="crossFastPassGroup" style="margin-top: 10px;">
+        <!-- SELECCIÓN DE PARQUES UNIVERSAL ORLANDO (Solo visible si dest es WDW) -->
+        <div class="input-group hidden" id="universalParksSelector" style="margin-top: 14px;">
+          <label class="field-label">¿Qué parques de Universal deseas visitar?</label>
+          <div class="pill-grid">
+            <label class="pill-checkbox">
+              <input type="checkbox" name="universalParkChoice" value="Epic Universe" />
+              <div class="pill-label">
+                <div class="pill-label-row"><span>🌌</span> Epic Universe</div>
+                <div class="pill-label-desc">El nuevo parque temático de clase mundial de Universal.</div>
+              </div>
+            </label>
+            <label class="pill-checkbox">
+              <input type="checkbox" name="universalParkChoice" value="Universal Studios Florida" />
+              <div class="pill-label">
+                <div class="pill-label-row"><span>🎬</span> Universal Studios Florida</div>
+                <div class="pill-label-desc">Diagon Alley, Minions, Transformers y cine clásico.</div>
+              </div>
+            </label>
+            <label class="pill-checkbox">
+              <input type="checkbox" name="universalParkChoice" value="Universal Islands of Adventure" />
+              <div class="pill-label">
+                <div class="pill-label-row"><span>🦖</span> Universal Islands of Adventure</div>
+                <div class="pill-label-desc">VelociCoaster, Hogsmeade, Hagrid y superhéroes de Marvel.</div>
+              </div>
+            </label>
+          </div>
+
+          <!-- Opción Park-to-Park: solo visible si seleccionan 2 o 3 parques -->
+          <div id="universalParkToParkContainer" class="hidden" style="margin-top: 10px;">
+            <label class="field-label">Modalidad de acceso:</label>
+            <label class="pill-checkbox">
+              <input type="checkbox" id="universalParkToPark" value="Sí" />
+              <div class="pill-label">
+                <div class="pill-label-row"><span>🚂</span> Opción Park-to-Park</div>
+                <div class="pill-label-desc">Visita más de un parque por día (requerido para el Expreso de Hogwarts entre Islands of Adventure y Universal Studios).</div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- SELECCIÓN DE PARQUES DISNEY WORLD (Solo visible si dest es Universal Orlando) -->
+        <div class="input-group hidden" id="disneyParksSelector" style="margin-top: 14px;">
+          <label class="field-label">¿Qué parques de Disney deseas visitar?</label>
+          <div class="pill-grid">
+            <label class="pill-checkbox">
+              <input type="checkbox" name="disneyParkChoice" value="Magic Kingdom" />
+              <div class="pill-label">
+                <div class="pill-label-row"><span>🏰</span> Magic Kingdom</div>
+                <div class="pill-label-desc">El parque de los cuentos de hadas y el icónico castillo.</div>
+              </div>
+            </label>
+            <label class="pill-checkbox">
+              <input type="checkbox" name="disneyParkChoice" value="Epcot" />
+              <div class="pill-label">
+                <div class="pill-label-row"><span>🌐</span> Epcot</div>
+                <div class="pill-label-desc">Innovación, pabellones internacionales y Guardians of the Galaxy.</div>
+              </div>
+            </label>
+            <label class="pill-checkbox">
+              <input type="checkbox" name="disneyParkChoice" value="Disney's Hollywood Studios" />
+              <div class="pill-label">
+                <div class="pill-label-row"><span>🎬</span> Disney's Hollywood Studios</div>
+                <div class="pill-label-desc">Star Wars: Galaxy's Edge, Toy Story Land y emociones intensas.</div>
+              </div>
+            </label>
+            <label class="pill-checkbox">
+              <input type="checkbox" name="disneyParkChoice" value="Disney's Animal Kingdom" />
+              <div class="pill-label">
+                <div class="pill-label-row"><span>🦁</span> Disney's Animal Kingdom</div>
+                <div class="pill-label-desc">Pandora: The World of Avatar, safari y naturaleza.</div>
+              </div>
+            </label>
+          </div>
+
+          <!-- Opción Park Hopper: solo visible si seleccionan más de 1 parque Disney -->
+          <div id="disneyParkHopperContainer" class="hidden" style="margin-top: 10px;">
+            <label class="field-label">Modalidad de acceso:</label>
+            <label class="pill-checkbox">
+              <input type="checkbox" id="disneyParkHopper" value="Sí" />
+              <div class="pill-label">
+                <div class="pill-label-row"><span>🏰</span> Opción Park Hopper</div>
+                <div class="pill-label-desc">Visita más de un parque Disney en el mismo día.</div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- SELECCIÓN DE PARQUES DISNEYLAND CALIFORNIA (Solo visible si dest es Universal Studios Hollywood) -->
+        <div class="input-group hidden" id="crossDisneylandParksSelector" style="margin-top: 14px;">
+          <label class="field-label">¿Qué parques de Disneyland deseas visitar?</label>
+          <div class="pill-grid">
+            <label class="pill-checkbox">
+              <input type="checkbox" name="crossDisneylandParkChoice" value="Disneyland Park" />
+              <div class="pill-label">
+                <div class="pill-label-row"><span>🏰</span> Disneyland Park</div>
+                <div class="pill-label-desc">El parque original de Walt Disney: Castillo de la Bella Durmiente, Star Wars: Galaxy's Edge y clásicos.</div>
+              </div>
+            </label>
+            <label class="pill-checkbox">
+              <input type="checkbox" name="crossDisneylandParkChoice" value="Disney California Adventure" />
+              <div class="pill-label">
+                <div class="pill-label-row"><span>🎡</span> Disney California Adventure</div>
+                <div class="pill-label-desc">Avengers Campus, Cars Land, Pixar Pier y atracciones de aventura.</div>
+              </div>
+            </label>
+          </div>
+
+          <!-- Opción Park Hopper Disneyland: solo visible si seleccionan los 2 parques -->
+          <div id="crossDisneylandHopperContainer" class="hidden" style="margin-top: 10px;">
+            <label class="field-label">Modalidad de acceso:</label>
+            <label class="pill-checkbox">
+              <input type="checkbox" id="crossDisneylandParkHopper" value="Sí" />
+              <div class="pill-label">
+                <div class="pill-label-row"><span>🏰</span> Opción Park Hopper</div>
+                <div class="pill-label-desc">Cambia entre Disneyland Park y Disney California Adventure en el mismo día.</div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <div class="input-group" id="crossFastPassGroup" style="margin-top: 14px;">
           <label class="field-label">Pase rápido para estos días:</label>
           <label class="pill-checkbox">
             <input type="checkbox" id="crossFastPass" value="Sí" />
@@ -696,28 +924,127 @@
       </svg>
       Enviar mi Solicitud por WhatsApp
     </button>
-    <p class="footer-note">Al hacer clic se abrirá tu WhatsApp con el mensaje estructurado para Wonder Way by .</p>
+    <p class="footer-note">Al hacer clic se abrirá tu WhatsApp con el mensaje estructurado para Wonder Way by Vio.</p>
   </form>
 </div>
 
 <script>
   const PHONE_NUMBER = "526561994244";
 
+  // Creador universal de Steppers táctiles
+  function setupStepper(btnMinusId, btnPlusId, valSpanId, min, max, initial, onChange) {
+    let current = initial;
+    const btnMinus = document.getElementById(btnMinusId);
+    const btnPlus = document.getElementById(btnPlusId);
+    const valSpan = document.getElementById(valSpanId);
+
+    function update() {
+      valSpan.textContent = current;
+      btnMinus.disabled = (current <= min);
+      btnPlus.disabled = (current >= max);
+      if (onChange) onChange(current);
+    }
+
+    btnMinus.addEventListener("click", () => {
+      if (current > min) {
+        current--;
+        update();
+      }
+    });
+
+    btnPlus.addEventListener("click", () => {
+      if (current < max) {
+        current++;
+        update();
+      }
+    });
+
+    update();
+
+    return {
+      get: () => current,
+      setLimits: (newMin, newMax) => {
+        min = newMin;
+        max = newMax;
+        if (current < min) current = min;
+        if (current > max) current = max;
+        update();
+      },
+      setVal: (v) => {
+        current = v;
+        update();
+      }
+    };
+  }
+
+  // 1. Adultos y Niños
+  const adultStepper = setupStepper("btnAdultMinus", "btnAdultPlus", "adultVal", 1, 14, 2);
+  const kidStepper = setupStepper("btnKidMinus", "btnKidPlus", "kidVal", 0, 10, 0, (count) => {
+    const kidsAgeContainer = document.getElementById("kidsAgeContainer");
+    const kidsAgeInputs = document.getElementById("kidsAgeInputs");
+    kidsAgeInputs.innerHTML = "";
+    if (count > 0) {
+      kidsAgeContainer.classList.remove("hidden");
+      for (let i = 1; i <= count; i++) {
+        const div = document.createElement("div");
+        div.className = "input-group";
+        div.innerHTML = `
+          <label class="field-label" style="font-size:0.8rem;">Edad Niño ${i}</label>
+          <div class="stepper-control">
+            <button type="button" class="stepper-btn age-btn-minus" data-idx="${i}">−</button>
+            <span class="stepper-value age-val" id="kidAgeVal_${i}">0</span>
+            <button type="button" class="stepper-btn age-btn-plus" data-idx="${i}">+</button>
+          </div>
+        `;
+        kidsAgeInputs.appendChild(div);
+
+        let ageVal = 0;
+        const minus = div.querySelector(".age-btn-minus");
+        const plus = div.querySelector(".age-btn-plus");
+        const span = div.querySelector(".age-val");
+        
+        minus.disabled = true;
+
+        minus.addEventListener("click", () => {
+          if (ageVal > 0) {
+            ageVal--;
+            span.textContent = ageVal;
+            minus.disabled = (ageVal <= 0);
+            plus.disabled = (ageVal >= 9);
+          }
+        });
+        plus.addEventListener("click", () => {
+          if (ageVal < 9) {
+            ageVal++;
+            span.textContent = ageVal;
+            minus.disabled = (ageVal <= 0);
+            plus.disabled = (ageVal >= 9);
+          }
+        });
+      }
+    } else {
+      kidsAgeContainer.classList.add("hidden");
+    }
+  });
+
+  // 2. Días de parques principales (arranca en 4, topado en 10)
+  const parkDaysStepper = setupStepper("btnParkDaysMinus", "btnParkDaysPlus", "parkDaysVal", 1, 10, 4);
+
+  // 3. Días de tickets complementarios (1 a 5)
+  const crossDaysStepper = setupStepper("btnCrossDaysMinus", "btnCrossDaysPlus", "crossDaysVal", 1, 5, 1);
+
   const checkInInput = document.getElementById("checkIn");
   const checkOutInput = document.getElementById("checkOut");
-  const kidCountInput = document.getElementById("kidCount");
-  const kidsAgeContainer = document.getElementById("kidsAgeContainer");
-  const kidsAgeInputs = document.getElementById("kidsAgeInputs");
   const destinationRadios = document.querySelectorAll('input[name="destination"]');
   const hotelLocationRadios = document.querySelectorAll('input[name="hotelLocation"]');
   const hotelLocOfficialLabel = document.getElementById("hotelLocOfficialLabel");
   const hotelLocOfficialDesc = document.getElementById("hotelLocOfficialDesc");
+  const hotelCategoryGroup = document.getElementById("hotelCategoryGroup");
   const catValueChoice = document.getElementById("catValueChoice");
   const catModChoice = document.getElementById("catModChoice");
   const catDeluxeChoice = document.getElementById("catDeluxeChoice");
   const amenitiesBlock = document.getElementById("amenitiesBlock");
   const amenitiesOptions = document.getElementById("amenitiesOptions");
-  const parkDaysInput = document.getElementById("parkDays");
   const minDaysNotice = document.getElementById("minDaysNotice");
   const mainExtrasGrid = document.getElementById("mainExtrasGrid");
   const diningPlanOptions = document.getElementById("diningPlanOptions");
@@ -732,8 +1059,19 @@
   const crossDaysLabel = document.getElementById("crossDaysLabel");
   const crossFastPassGroup = document.getElementById("crossFastPassGroup");
   const crossFastPassText = document.getElementById("crossFastPassText");
+  const universalParksSelector = document.getElementById("universalParksSelector");
+  const universalParkToPark = document.getElementById("universalParkToPark");
+  const universalParkToParkContainer = document.getElementById("universalParkToParkContainer");
+  const disneyParksSelector = document.getElementById("disneyParksSelector");
+  const disneyParkHopper = document.getElementById("disneyParkHopper");
+  const disneyParkHopperContainer = document.getElementById("disneyParkHopperContainer");
+  const crossDisneylandParksSelector = document.getElementById("crossDisneylandParksSelector");
+  const crossDisneylandParkHopper = document.getElementById("crossDisneylandParkHopper");
+  const crossDisneylandHopperContainer = document.getElementById("crossDisneylandHopperContainer");
+  const mainUniversalParksSelector = document.getElementById("mainUniversalParksSelector");
+  const mainDisneylandParksSelector = document.getElementById("mainDisneylandParksSelector");
 
-  // 1. BLOQUEAR FECHAS PASADAS EN CALENDARIOS
+  // Bloquear fechas pasadas en calendarios
   function initCalendarLimits() {
     const today = new Date();
     const yyyy = today.getFullYear();
@@ -743,7 +1081,6 @@
 
     checkInInput.min = minDateStr;
 
-    // Al cambiar check-in, check-out debe ser al menos al día siguiente
     checkInInput.addEventListener("change", function() {
       if (this.value) {
         const checkInDate = new Date(this.value);
@@ -762,26 +1099,6 @@
   }
   initCalendarLimits();
 
-  // 2. EDADES DINÁMICAS DE NIÑOS
-  kidCountInput.addEventListener("input", function() {
-    const count = parseInt(this.value, 10) || 0;
-    kidsAgeInputs.innerHTML = "";
-    if (count > 0) {
-      kidsAgeContainer.classList.remove("hidden");
-      for (let i = 1; i <= count; i++) {
-        const div = document.createElement("div");
-        div.className = "input-group";
-        div.innerHTML = `
-          <label class="field-label" style="font-size:0.8rem;">Edad Niño ${i}</label>
-          <input type="number" min="0" max="9" placeholder="Años (0-9)" class="kid-age-input" required />
-        `;
-        kidsAgeInputs.appendChild(div);
-      }
-    } else {
-      kidsAgeContainer.classList.add("hidden");
-    }
-  });
-
   crossAddRadios.forEach(radio => {
     radio.addEventListener("change", (e) => {
       if (e.target.value === "Sí") {
@@ -789,6 +1106,69 @@
       } else {
         crossDetailsBlock.classList.add("hidden");
       }
+    });
+  });
+
+  // Lógica: Park-to-Park en complementos solo si se eligen 2 o más parques Universal
+  function updateParkToParkVisibility() {
+    const selectedParks = document.querySelectorAll('input[name="universalParkChoice"]:checked');
+    if (selectedParks.length > 1) {
+      universalParkToParkContainer.classList.remove("hidden");
+    } else {
+      universalParkToParkContainer.classList.add("hidden");
+      universalParkToPark.checked = false;
+    }
+  }
+
+  document.querySelectorAll('input[name="universalParkChoice"]').forEach(cb => {
+    cb.addEventListener("change", updateParkToParkVisibility);
+  });
+
+  // Lógica: Park Hopper en complementos solo si se eligen 2 o más parques Disney World
+  function updateDisneyHopperVisibility() {
+    const selectedDisney = document.querySelectorAll('input[name="disneyParkChoice"]:checked');
+    if (selectedDisney.length > 1) {
+      disneyParkHopperContainer.classList.remove("hidden");
+    } else {
+      disneyParkHopperContainer.classList.add("hidden");
+      disneyParkHopper.checked = false;
+    }
+  }
+
+  document.querySelectorAll('input[name="disneyParkChoice"]').forEach(cb => {
+    cb.addEventListener("change", updateDisneyHopperVisibility);
+  });
+
+  // Lógica: Park Hopper en complementos solo si se eligen los 2 parques Disneyland California
+  function updateCrossDisneylandHopperVisibility() {
+    const selectedDisneyland = document.querySelectorAll('input[name="crossDisneylandParkChoice"]:checked');
+    if (selectedDisneyland.length > 1) {
+      crossDisneylandHopperContainer.classList.remove("hidden");
+    } else {
+      crossDisneylandHopperContainer.classList.add("hidden");
+      crossDisneylandParkHopper.checked = false;
+    }
+  }
+
+  document.querySelectorAll('input[name="crossDisneylandParkChoice"]').forEach(cb => {
+    cb.addEventListener("change", updateCrossDisneylandHopperVisibility);
+  });
+
+  // Escuchar cambios en los parques principales de Universal
+  document.querySelectorAll('input[name="mainUniversalParkChoice"]').forEach(cb => {
+    cb.addEventListener("change", () => {
+      const dest = getSelected("destination");
+      const loc = getSelected("hotelLocation");
+      renderMainExtras(dest, loc);
+    });
+  });
+
+  // Escuchar cambios en los parques principales de Disneyland California
+  document.querySelectorAll('input[name="mainDisneylandParkChoice"]').forEach(cb => {
+    cb.addEventListener("change", () => {
+      const dest = getSelected("destination");
+      const loc = getSelected("hotelLocation");
+      renderMainExtras(dest, loc);
     });
   });
 
@@ -801,28 +1181,56 @@
     const dest = getSelected("destination");
     const loc = getSelected("hotelLocation");
 
+    // Mostrar/ocultar selectores de parques principales
+    if (dest === "Universal Orlando Resort") {
+      mainUniversalParksSelector.classList.remove("hidden");
+    } else {
+      mainUniversalParksSelector.classList.add("hidden");
+      document.querySelectorAll('input[name="mainUniversalParkChoice"]').forEach(cb => cb.checked = false);
+    }
+
+    if (dest === "Disneyland Resort (California)") {
+      mainDisneylandParksSelector.classList.remove("hidden");
+    } else {
+      mainDisneylandParksSelector.classList.add("hidden");
+      document.querySelectorAll('input[name="mainDisneylandParkChoice"]').forEach(cb => cb.checked = false);
+    }
+
     // Hospedaje
+    hotelCategoryGroup.classList.remove("hidden");
+
     if (dest === "Disneyland Resort (California)") {
       hotelLocOfficialLabel.textContent = "Hotel Disney";
       hotelLocOfficialDesc.textContent = "Grand Californian, Disneyland Hotel o Pixar Place.";
       if (loc === "Dentro de la propiedad") {
         catValueChoice.classList.add("hidden");
         catModChoice.classList.add("hidden");
-        catDeluxeChoice.querySelector('input').checked = true;
         amenitiesBlock.classList.add("hidden");
-      } else {
+      } else if (loc === "Fuera de la propiedad") {
         catValueChoice.classList.remove("hidden");
         catModChoice.classList.remove("hidden");
         amenitiesBlock.classList.remove("hidden");
         setupAnaheimAmenities();
+      } else {
+        catValueChoice.classList.remove("hidden");
+        catModChoice.classList.remove("hidden");
+        amenitiesBlock.classList.add("hidden");
       }
     } else if (dest === "Universal Studios Hollywood") {
       hotelLocOfficialLabel.textContent = "Hilton / Sheraton CityWalk";
       hotelLocOfficialDesc.textContent = "Hoteles conectados caminando a Universal CityWalk.";
       catValueChoice.classList.remove("hidden");
       catModChoice.classList.remove("hidden");
-      amenitiesBlock.classList.remove("hidden");
-      setupHollywoodAmenities();
+      if (loc === "Dentro de la propiedad") {
+        hotelCategoryGroup.classList.add("hidden");
+        document.querySelectorAll('input[name="hotelCategory"]').forEach(r => r.checked = false);
+        amenitiesBlock.classList.add("hidden");
+      } else if (loc === "Fuera de la propiedad") {
+        amenitiesBlock.classList.remove("hidden");
+        setupHollywoodAmenities();
+      } else {
+        amenitiesBlock.classList.add("hidden");
+      }
     } else if (dest === "Walt Disney World (Orlando)") {
       hotelLocOfficialLabel.textContent = "Hotel Disney";
       hotelLocOfficialDesc.textContent = "Resorts Disney con transporte gratuito y horas mágicas.";
@@ -831,39 +1239,49 @@
       amenitiesBlock.classList.add("hidden");
     } else if (dest === "Universal Orlando Resort") {
       hotelLocOfficialLabel.textContent = "Hotel Universal";
-      hotelLocOfficialDesc.textContent = "Resorts oficiales con entrada anticipada a Epic Universe y Harry Potter.";
+      hotelLocOfficialDesc.textContent = "Entrada anticipada a los parques. Hoteles Signature con Universal Express Unlimited de cortesía.";
+      catValueChoice.classList.remove("hidden");
+      catModChoice.classList.remove("hidden");
+      amenitiesBlock.classList.add("hidden");
+    } else {
+      hotelLocOfficialLabel.textContent = "Hotel Oficial";
+      hotelLocOfficialDesc.textContent = "Beneficios de entrada anticipada y transporte temático.";
       catValueChoice.classList.remove("hidden");
       catModChoice.classList.remove("hidden");
       amenitiesBlock.classList.add("hidden");
     }
 
-    // Mínimos de días de parque
+    // Regla de mínimos estrictos para paquetes
     if (dest === "Walt Disney World (Orlando)") {
       minDaysNotice.textContent = "ℹ️ Los paquetes Disney World requieren un mínimo de 3 días de parque.";
       minDaysNotice.classList.remove("hidden");
-      if (parseInt(parkDaysInput.value, 10) < 3) parkDaysInput.value = 3;
-      parkDaysInput.min = "3";
+      parkDaysStepper.setLimits(3, 10);
     } else if (dest === "Disneyland Resort (California)") {
       minDaysNotice.textContent = "ℹ️ Los paquetes Disneyland California requieren un mínimo de 2 días de parque.";
       minDaysNotice.classList.remove("hidden");
-      if (parseInt(parkDaysInput.value, 10) < 2) parkDaysInput.value = 2;
-      parkDaysInput.min = "2";
+      parkDaysStepper.setLimits(2, 5);
+    } else if (dest === "Universal Studios Hollywood") {
+      minDaysNotice.classList.add("hidden");
+      parkDaysStepper.setLimits(1, 5);
+    } else if (dest === "Universal Orlando Resort") {
+      minDaysNotice.classList.add("hidden");
+      parkDaysStepper.setLimits(1, 10);
     } else {
       minDaysNotice.classList.add("hidden");
-      parkDaysInput.min = "1";
+      parkDaysStepper.setLimits(1, 10);
     }
 
-    // Renderizado de Extras según destino y si es hotel Disney
     renderMainExtras(dest, loc);
-
-    // Complemento directo según destino
     setupCrossOptions(dest);
+    updateParkToParkVisibility();
+    updateDisneyHopperVisibility();
+    updateCrossDisneylandHopperVisibility();
   }
 
   function setupAnaheimAmenities() {
     amenitiesOptions.innerHTML = `
       <label class="pill-checkbox">
-        <input type="checkbox" name="amenity" value="Cruzando la calle caminando" />
+        <input type="checkbox" name="amenity" value="Caminando cruzando la calle" />
         <div class="pill-label">
           <div class="pill-label-row"><span>🚶</span> Cruzando la calle caminando</div>
         </div>
@@ -898,7 +1316,7 @@
         </div>
       </label>
       <label class="pill-checkbox">
-        <input type="checkbox" name="amenity" value="Transporte gratuito a Universal" />
+        <input type="checkbox" name="amenity" value="Shuttle / Transporte gratuito a Universal" />
         <div class="pill-label">
           <div class="pill-label-row"><span>🚌</span> Shuttle / Transporte gratis</div>
         </div>
@@ -924,8 +1342,14 @@
 
     if (dest === "Walt Disney World (Orlando)") {
       if (loc === "Dentro de la propiedad") {
-        // En paquete Disney se puede agregar Dining Plan y Memory Maker con descuento
         mainExtrasGrid.innerHTML = `
+          <label class="pill-checkbox">
+            <input type="checkbox" name="mainExtra" value="Opción Park Hopper" />
+            <div class="pill-label">
+              <div class="pill-label-row"><span>🏰</span> Opción Park Hopper</div>
+              <div class="pill-label-desc">Visita más de un parque temático Disney el mismo día.</div>
+            </div>
+          </label>
           <label class="pill-checkbox">
             <input type="checkbox" id="diningPlanCheck" name="mainExtra" value="Plan de Comidas Disney" />
             <div class="pill-label">
@@ -934,7 +1358,7 @@
             </div>
           </label>
           <label class="pill-checkbox">
-            <input type="checkbox" name="mainExtra" value="Memory Maker (Fotos ilimitadas con $25 USD de ahorro)" />
+            <input type="checkbox" name="mainExtra" value="Memory Maker (Fotos ilimitadas)" />
             <div class="pill-label">
               <div class="pill-label-row"><span>📸</span> Memory Maker (Fotos ilimitadas)</div>
               <div class="pill-label-desc">¡Ahorras $25 USD al adquirirlo incluido en tu paquete con anticipación!</div>
@@ -953,12 +1377,33 @@
           });
         }
       } else {
-        // En hotel fuera no se pueden agregar ni dining plan ni memory maker al paquete
-        mainExtrasGrid.innerHTML = "";
-        wdwOffsiteNotice.classList.remove("hidden");
+        mainExtrasGrid.innerHTML = `
+          <label class="pill-checkbox">
+            <input type="checkbox" name="mainExtra" value="Opción Park Hopper" />
+            <div class="pill-label">
+              <div class="pill-label-row"><span>🏰</span> Opción Park Hopper</div>
+              <div class="pill-label-desc">Visita más de un parque temático Disney el mismo día.</div>
+            </div>
+          </label>
+        `;
+        if (loc === "Fuera de la propiedad") {
+          wdwOffsiteNotice.classList.remove("hidden");
+        }
       }
     } else if (dest === "Disneyland Resort (California)") {
+      const selectedDisneylandParks = document.querySelectorAll('input[name="mainDisneylandParkChoice"]:checked');
+      const hopperExtraHtml = selectedDisneylandParks.length > 1 ? `
+        <label class="pill-checkbox">
+          <input type="checkbox" name="mainExtra" value="Opción Park Hopper" />
+          <div class="pill-label">
+            <div class="pill-label-row"><span>🏰</span> Opción Park Hopper</div>
+            <div class="pill-label-desc">Cambia entre Disneyland Park y Disney California Adventure el mismo día.</div>
+          </div>
+        </label>
+      ` : '';
+
       mainExtrasGrid.innerHTML = `
+        ${hopperExtraHtml}
         <label class="pill-checkbox">
           <input type="checkbox" name="mainExtra" value="Lightning Lane Multi Pass" />
           <div class="pill-label">
@@ -968,7 +1413,19 @@
         </label>
       `;
     } else if (dest === "Universal Orlando Resort") {
+      const selectedMainParks = document.querySelectorAll('input[name="mainUniversalParkChoice"]:checked');
+      const parkToParkExtraHtml = selectedMainParks.length > 1 ? `
+        <label class="pill-checkbox">
+          <input type="checkbox" name="mainExtra" value="Opción Park-to-Park" />
+          <div class="pill-label">
+            <div class="pill-label-row"><span>🚂</span> Opción Park-to-Park</div>
+            <div class="pill-label-desc">Visita más de un parque por día (requerido para abordar el Expreso de Hogwarts entre ambos parques).</div>
+          </div>
+        </label>
+      ` : '';
+
       mainExtrasGrid.innerHTML = `
+        ${parkToParkExtraHtml}
         <label class="pill-checkbox">
           <input type="checkbox" name="mainExtra" value="Universal Express Pass" />
           <div class="pill-label">
@@ -987,16 +1444,21 @@
           </div>
         </label>
       `;
+    } else {
+      mainExtrasGrid.innerHTML = "";
     }
   }
 
   function setupCrossOptions(dest) {
     if (dest === "Walt Disney World (Orlando)") {
       crossSectionTitle.textContent = "6. ¿Deseas agregar tickets para Universal Orlando Resort?";
-      crossSectionSubtitle.textContent = "Incluye acceso a 3 parques: Epic Universe, Universal Studios Florida e Islands of Adventure.";
-      crossAddTitle.textContent = "¡Sí! Agregar tickets para Universal Orlando (3 Parques)";
-      crossAddDesc.textContent = "Añadir días de parque para Epic Universe, Universal Studios e Islands of Adventure.";
-      crossDaysLabel.textContent = "¿Cuántos días de tickets para Universal Orlando (3 parques)?";
+      crossSectionSubtitle.textContent = "Elige tus parques preferidos y complementa tu estancia.";
+      crossAddTitle.textContent = "¡Sí! Agregar tickets para Universal Orlando";
+      crossAddDesc.textContent = "Añadir días de parque en Universal Orlando Resort.";
+      crossDaysLabel.textContent = "¿Cuántos días de tickets para Universal Orlando?";
+      universalParksSelector.classList.remove("hidden");
+      disneyParksSelector.classList.add("hidden");
+      crossDisneylandParksSelector.classList.add("hidden");
       crossFastPassGroup.classList.remove("hidden");
       crossFastPassText.innerHTML = `<div class="pill-label-row"><span>⚡</span> Agregar Universal Express Pass</div>`;
     } else if (dest === "Universal Orlando Resort") {
@@ -1005,14 +1467,20 @@
       crossAddTitle.textContent = "¡Sí! Agregar tickets para Walt Disney World";
       crossAddDesc.textContent = "Añadir días de parque temático Disney.";
       crossDaysLabel.textContent = "¿Cuántos días de entradas para Walt Disney World?";
-      crossFastPassGroup.classList.add("hidden");
-      document.getElementById("crossFastPass").checked = false;
+      universalParksSelector.classList.add("hidden");
+      disneyParksSelector.classList.remove("hidden");
+      crossDisneylandParksSelector.classList.add("hidden");
+      crossFastPassGroup.classList.remove("hidden");
+      crossFastPassText.innerHTML = `<div class="pill-label-row"><span>⚡</span> Agregar Lightning Lane para Disney World</div>`;
     } else if (dest === "Disneyland Resort (California)") {
       crossSectionTitle.textContent = "6. ¿Deseas agregar tickets para Universal Studios Hollywood?";
       crossSectionSubtitle.textContent = "Conoce el Studio Tour y Super Nintendo World en Los Ángeles.";
       crossAddTitle.textContent = "¡Sí! Agregar tickets para Universal Hollywood";
       crossAddDesc.textContent = "Añadir entrada a Universal Studios Hollywood.";
       crossDaysLabel.textContent = "¿Cuántos días de entrada para Universal Studios Hollywood?";
+      universalParksSelector.classList.add("hidden");
+      disneyParksSelector.classList.add("hidden");
+      crossDisneylandParksSelector.classList.add("hidden");
       crossFastPassGroup.classList.remove("hidden");
       crossFastPassText.innerHTML = `<div class="pill-label-row"><span>⚡</span> Agregar Universal Express Pass</div>`;
     } else if (dest === "Universal Studios Hollywood") {
@@ -1021,8 +1489,21 @@
       crossAddTitle.textContent = "¡Sí! Agregar tickets para Disneyland California";
       crossAddDesc.textContent = "Añadir días de parque para Disneyland Resort.";
       crossDaysLabel.textContent = "¿Cuántos días de parque para Disneyland California?";
+      universalParksSelector.classList.add("hidden");
+      disneyParksSelector.classList.add("hidden");
+      crossDisneylandParksSelector.classList.remove("hidden");
       crossFastPassGroup.classList.remove("hidden");
       crossFastPassText.innerHTML = `<div class="pill-label-row"><span>⚡</span> Agregar Lightning Lane para Disneyland</div>`;
+    } else {
+      crossSectionTitle.textContent = "6. ¿Deseas agregar tickets adicionales?";
+      crossSectionSubtitle.textContent = "Visita otro complejo de parques aprovechando tu estancia en la ciudad.";
+      crossAddTitle.textContent = "¡Sí, agregar entradas!";
+      crossAddDesc.textContent = "Sumar días de parque adicionales.";
+      crossDaysLabel.textContent = "¿Cuántos días de tickets complementarios?";
+      universalParksSelector.classList.add("hidden");
+      disneyParksSelector.classList.add("hidden");
+      crossDisneylandParksSelector.classList.add("hidden");
+      crossFastPassGroup.classList.add("hidden");
     }
   }
 
@@ -1031,15 +1512,15 @@
 
   updateUI();
 
-  // Envío a WhatsApp
+  // Envío a WhatsApp con sanitización y emojis estándar Unicode
   document.getElementById("quoteForm").addEventListener("submit", function(e) {
     e.preventDefault();
 
     const name = document.getElementById("fullName").value.trim();
     const inDate = document.getElementById("checkIn").value;
     const outDate = document.getElementById("checkOut").value;
-    const adults = document.getElementById("adultCount").value;
-    const kids = document.getElementById("kidCount").value;
+    const adults = adultStepper.get();
+    const kids = kidStepper.get();
 
     let durationStr = "";
     if (inDate && outDate) {
@@ -1051,29 +1532,46 @@
     }
 
     let kidsAgeStr = "Ninguno";
-    if (parseInt(kids, 10) > 0) {
+    if (kids > 0) {
       const ages = [];
-      document.querySelectorAll(".kid-age-input").forEach(inp => {
-        if (inp.value) ages.push(inp.value + " años");
+      document.querySelectorAll(".age-val").forEach(inp => {
+        ages.push(inp.textContent + " a\u{00F1}os");
       });
       kidsAgeStr = ages.length > 0 ? ages.join(", ") : `${kids} menores (edades pendientes)`;
     }
 
-    const dest = getSelected("destination");
-    const loc = getSelected("hotelLocation");
+    const dest = getSelected("destination") || "Pendiente de definir";
+    const loc = getSelected("hotelLocation") || "Pendiente de definir";
     const cat = getSelected("hotelCategory");
+    const catStr = cat ? ` (${cat})` : "";
 
     const amenities = [];
     document.querySelectorAll('input[name="amenity"]:checked').forEach(c => amenities.push(c.value));
-    const amenitiesStr = amenities.length > 0 ? `\n   - Comodidades clave: ${amenities.join(", ")}` : "";
+    const amenitiesStr = amenities.length > 0 ? `\n   - Comodidades: ${amenities.join(", ")}` : "";
 
-    const parkDays = document.getElementById("parkDays").value;
+    const parkDays = parkDaysStepper.get();
+
+    // Detalle de parques seleccionados para el destino principal
+    let mainParksDetail = "";
+    if (dest === "Universal Orlando Resort") {
+      const selectedMain = [];
+      document.querySelectorAll('input[name="mainUniversalParkChoice"]:checked').forEach(c => selectedMain.push(c.value));
+      if (selectedMain.length > 0) {
+        mainParksDetail = ` [Parques: ${selectedMain.join(", ")}]`;
+      }
+    } else if (dest === "Disneyland Resort (California)") {
+      const selectedMain = [];
+      document.querySelectorAll('input[name="mainDisneylandParkChoice"]:checked').forEach(c => selectedMain.push(c.value));
+      if (selectedMain.length > 0) {
+        mainParksDetail = ` [Parques: ${selectedMain.join(", ")}]`;
+      }
+    }
 
     const extras = [];
     document.querySelectorAll('input[name="mainExtra"]:checked').forEach(c => {
       if (c.value === "Plan de Comidas Disney") {
-        const planChoice = getSelected("diningPlanSelected");
-        extras.push(`Plan de Comidas: ${planChoice}`);
+        const planChoice = getSelected("diningPlanSelected") || "Por definir";
+        extras.push(`Plan de Comidas Disney (${planChoice})`);
       } else {
         extras.push(c.value);
       }
@@ -1083,39 +1581,62 @@
     const crossAdd = getSelected("crossAdd");
     let crossMsg = "No requerido";
     if (crossAdd === "Sí") {
-      const crossDays = document.getElementById("crossParkDays").value;
+      const crossDays = crossDaysStepper.get();
       const hasFastPass = document.getElementById("crossFastPass").checked;
-      const fastPass = hasFastPass ? " (Con pase rápido)" : " (Solo entradas)";
       let targetPark = "";
-      if (dest === "Walt Disney World (Orlando)") targetPark = "Universal Orlando (3 parques: Epic Universe, Studios, Islands)";
-      else if (dest === "Universal Orlando Resort") targetPark = "Walt Disney World";
-      else if (dest === "Disneyland Resort (California)") targetPark = "Universal Studios Hollywood";
-      else if (dest === "Universal Studios Hollywood") targetPark = "Disneyland California";
 
-      crossMsg = `Sí, ${crossDays} día(s) para ${targetPark}${dest === "Universal Orlando Resort" ? "" : fastPass}`;
+      if (dest === "Walt Disney World (Orlando)") {
+        const selectedParks = [];
+        document.querySelectorAll('input[name="universalParkChoice"]:checked').forEach(p => selectedParks.push(p.value));
+        const parksText = selectedParks.length > 0 ? selectedParks.join(", ") : "Parques a definir";
+        const isParkToPark = selectedParks.length > 1 && document.getElementById("universalParkToPark").checked;
+        const parkToParkText = isParkToPark ? " | Con Park-to-Park" : "";
+        const fastPassText = hasFastPass ? " | Con Universal Express" : "";
+        crossMsg = `S\u{00ED}, ${crossDays} d\u{00ED}a(s) para Universal Orlando [Parques: ${parksText}${parkToParkText}${fastPassText}]`;
+      } else if (dest === "Universal Orlando Resort") {
+        const selectedDisneyParks = [];
+        document.querySelectorAll('input[name="disneyParkChoice"]:checked').forEach(p => selectedDisneyParks.push(p.value));
+        const disneyParksText = selectedDisneyParks.length > 0 ? selectedDisneyParks.join(", ") : "Parques a definir";
+        const isParkHopper = selectedDisneyParks.length > 1 && document.getElementById("disneyParkHopper").checked;
+        const parkHopperText = isParkHopper ? " | Con Park Hopper" : "";
+        const fastPassText = hasFastPass ? " | Con Lightning Lane" : "";
+        crossMsg = `S\u{00ED}, ${crossDays} d\u{00ED}a(s) para Walt Disney World [Parques: ${disneyParksText}${parkHopperText}${fastPassText}]`;
+      } else if (dest === "Disneyland Resort (California)") {
+        targetPark = "Universal Studios Hollywood";
+        const fastPass = hasFastPass ? " (Con pase r\u{00E1}pido)" : " (Solo entradas)";
+        crossMsg = `S\u{00ED}, ${crossDays} d\u{00ED}a(s) para ${targetPark}${fastPass}`;
+      } else if (dest === "Universal Studios Hollywood") {
+        const selectedCrossDisneyland = [];
+        document.querySelectorAll('input[name="crossDisneylandParkChoice"]:checked').forEach(p => selectedCrossDisneyland.push(p.value));
+        const disneylandParksText = selectedCrossDisneyland.length > 0 ? selectedCrossDisneyland.join(", ") : "Parques a definir";
+        const isDisneylandHopper = selectedCrossDisneyland.length > 1 && document.getElementById("crossDisneylandParkHopper").checked;
+        const disneylandHopperText = isDisneylandHopper ? " | Con Park Hopper" : "";
+        const fastPassText = hasFastPass ? " | Con Lightning Lane" : "";
+        crossMsg = `S\u{00ED}, ${crossDays} d\u{00ED}a(s) para Disneyland California [Parques: ${disneylandParksText}${disneylandHopperText}${fastPassText}]`;
+      }
     }
 
+    // Armado estructurado del mensaje con secuencias Unicode oficiales de WhatsApp
     const msg = 
-`✨ *SOLICITUD DE COTIZACIÓN - WONDER WAY BY * ✨
-Hola Violeta, me gustaría solicitar una cotización personalizada:
+`\u{2728} *SOLICITUD DE COTIZACI\u{00D3}N - WONDER WAY BY VIO* \u{2728}
+Hola Vio, me gustar\u{00ED}a solicitar una cotizaci\u{00F3}n personalizada:
 
-👤 *Titular:* ${name}
-📅 *Fechas:* ${inDate} al ${outDate}${durationStr}
-👥 *Viajeros:* ${adults} Adulto(s) | ${kids} Menor(es)
-👶 *Edades:* ${kidsAgeStr}
+\u{1F464} *Titular:* ${name}
+\u{1F4C5} *Fechas:* ${inDate} al ${outDate}${durationStr}
+\u{1F465} *Viajeros:* ${adults} Adulto(s) | ${kids} Menor(es)
+\u{1F476} *Edades de menores:* ${kidsAgeStr}
 
-🏰 *Destino Principal:* ${dest}
-🏨 *Hospedaje:* ${loc} (${cat})${amenitiesStr}
-🎟 *Días de parque principal:* ${parkDays} día(s)
-⭐ *Extras principales:* ${extrasStr}
+\u{1F3F0} *Destino Principal:* ${dest}
+\u{1F3E8} *Hospedaje:* ${loc}${catStr}${amenitiesStr}
+\u{1F39F}\u{FE0F} *D\u{00ED}as de parque principal:* ${parkDays} d\u{00ED}a(s)${mainParksDetail}
+\u{2B50} *Extras principales:* ${extrasStr}
 
-🎡 *Entradas parque adicional:* ${crossMsg}
+\u{1F3A1} *Tickets adicionales:* ${crossMsg}
 
-¡Quedo a la espera de las mejores opciones y promociones!`;
+\u{00A1}Quedo a la espera de las mejores opciones y promociones!`;
 
     const encodedMsg = encodeURIComponent(msg);
-    const whatsappURL = `https://wa.me/${PHONE_NUMBER}?text=${encodedMsg}`;
-    window.open(whatsappURL, "_blank");
+    window.location.href = `https://api.whatsapp.com/send?phone=${PHONE_NUMBER}&text=${encodedMsg}`;
   });
 </script>
 
