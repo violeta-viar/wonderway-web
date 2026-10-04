@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wonder Way by Vio | Cotización de Tickets</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --morado-dark: #1E0C36;
+      --morado-main: #3F1D6B;
+      --morado-soft: #F4EFFB;
+      --rosa-vibrante: #D94680;
+      --rosa-pastel: #FCE7F0;
+      --dorado: #C69A43;
+      --dorado-light: #F9F4EB;
+      --negro-texto: #17171C;
+      --gris-texto: #5E5D6A;
+      --gris-borde: #E6E4EB;
+      --blanco: #FFFFFF;
+      --fondo: #FAF8FD;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--fondo);
+      color: var(--negro-texto);
+      line-height: 1.5;
+      padding: 24px 14px 50px;
+    }
+
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      background: var(--blanco);
+      border-radius: 28px;
+      box-shadow: 0 16px 40px rgba(30, 12, 54, 0.08);
+      overflow: hidden;
+      border: 1px solid rgba(198, 154, 67, 0.25);
+    }
+
+    /* ENCABEZADO */
+    .header {
+      background: linear-gradient(135deg, var(--morado-dark) 0%, var(--morado-main) 70%, #532383 100%);
+      color: var(--blanco);
+      padding: 38px 20px 30px;
+      text-align: center;
+      position: relative;
+    }
+
+    .header::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--dorado), var(--rosa-vibrante), var(--dorado));
+    }
+
+    .logo-container {
+      width: 100%;
+      max-width: 280px;
+      height: 150px;
+      margin: 0 auto 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.3));
+    }
+
+    .brand-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.95rem;
+      font-weight: 700;
+      color: var(--blanco);
+    }
+
+    form {
+      padding: 26px 22px;
+    }
+
+    .section-block {
+      margin-bottom: 28px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--gris-borde);
+    }
+
+    .section-block:last-of-type {
+      border-bottom: none;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--morado-dark);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-subtitle {
+      font-size: 0.85rem;
+      color: var(--gris-texto);
+      margin-bottom: 16px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 580px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .input-group {
+      margin-bottom: 14px;
+    }
+
+    label.field-label {
+      display: block;
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: var(--morado-dark);
+      margin-bottom: 6px;
+    }
+
+    input[type="text"],
+    input[type="date"] {
+      width: 100%;
+      padding: 13px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--gris-borde);
+      background-color: #FAF9FC;
+      font-size: 0.95rem;
+      color: var(--negro-texto);
+      outline: none;
+      transition: all 0.25s ease;
+    }
+
+    input:focus {
+      border-color: var(--morado-main);
+      background-color: var(--blanco);
+      box-shadow: 0 0 0 3px rgba(63, 29, 107, 0.1);
+    }
+
+    /* CONTADORES INCREMENTALES TÁCTILES */
+    .stepper-control {
+      display: flex;
+      align-items: center;
+      background: #FAF9FC;
+      border: 1.5px solid var(--gris-borde);
+      border-radius: 14px;
+      overflow: hidden;
+      width: 100%;
+      max-width: 220px;
+    }
+
+    .stepper-btn {
+      width: 48px;
+      height: 48px;
+      background: #FAF9FC;
+      border: none;
+      color: var(--morado-main);
+      font-size: 1.4rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+      transition: background 0.15s ease;
+    }
+
+    .stepper-btn:active {
+      background: #E8DFF5;
+    }
+
+    .stepper-btn:disabled {
+      color: #BFBCC7;
+      cursor: not-allowed;
+      background: #F4F3F7;
+    }
+
+    .stepper-value {
+      flex: 1;
+      text-align: center;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--morado-dark);
+      user-select: none;
+    }
+
+    /* Tarjetas de Selección */
+    .card-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    @media (max-width: 540px) {
+      .card-options {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card-choice {
+      position: relative;
+    }
+
+    .card-choice input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .card-box {
+      border: 1.5px solid var(--gris-borde);
+      border-radius: 14px;
+      padding: 14px 15px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      transition: all 0.2s ease;
+      background: var(--blanco);
+    }
+
+    .card-box:hover {
+      border-color: #d1b8ea;
+      transform: translateY(-1px);
+    }
+
+    .card-choice input:checked + .card-box {
+      border-color: var(--morado-main);
+      background-color: var(--morado-soft);
+      box-shadow: 0 6px 14px rgba(63, 29, 107, 0.08);
+    }
+
+    .card-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--morado-dark);
+      margin-bottom: 4px;
+    }
+
+    .card-desc {
+      font-size: 0.8rem;
+      color: var(--gris-texto);
+      line-height: 1.35;
+    }
+
+    /* Checkbox pills */
+    .pill-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .pill-checkbox input {
+      display: none;
+    }
+
+    .pill-label {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--gris-borde);
+      background: #FDFBFF;
+      font-size: 0.85rem;
+      color: var(--negro-texto);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .pill-label-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+    }
+
+    .pill-label-desc {
+      font-size: 0.77rem;
+      color: var(--gris-texto);
+      padding-left: 24px;
+    }
+
+    .pill-checkbox input:checked + .pill-label {
+      background: var(--rosa-pastel);
+      border-color: var(--rosa-vibrante);
+      color: #8c1e4d;
+    }
+
+    .pill-checkbox input:checked + .pill-label .pill-label-desc {
+      color: #73133d;
+    }
+
+    .sub-section {
+      background: #FAF8FD;
+      border-radius: 16px;
+      padding: 16px;
+      border: 1px dashed #d8cde8;
+      margin-top: 14px;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .btn-submit {
+      width: 100%;
+      background: linear-gradient(135deg, var(--morado-dark) 0%, var(--morado-main) 100%);
+      color: var(--blanco);
+      border: 2px solid var(--dorado);
+      border-radius: 16px;
+      padding: 16px 20px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      transition: all 0.25s ease;
+      box-shadow: 0 10px 22px rgba(30, 12, 54, 0.2);
+    }
+
+    .btn-submit:hover {
+      background: linear-gradient(135deg, #130526 0%, #2f1253 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px rgba(30, 12, 54, 0.28);
+    }
+
+    .btn-submit svg {
+      width: 22px;
+      height: 22px;
+      fill: currentColor;
+    }
+
+    .footer-note {
+      font-size: 0.78rem;
+      color: #7b788a;
+      text-align: center;
+      margin-top: 14px;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <!-- ENCABEZADO CON LOGO OFICIAL -->
+  <header class="header">
+    <div class="logo-container">
+      <img src="logo.png" alt="Wonder Way by Vio" class="logo-img" />
+    </div>
+    <h1 class="brand-title">Cotizador de Tickets</h1>
+  </header>
+
+  <!-- FORMULARIO -->
+  <form id="ticketsForm">
+    <!-- 1. DATOS BÁSICOS -->
+    <div class="section-block">
+      <div class="section-title">1. ¿Quiénes viajan y cuándo?</div>
+
+      <div class="input-group">
+        <label class="field-label" for="fullName">Nombre completo del titular *</label>
+        <input type="text" id="fullName" placeholder="Ej. Mariana González" required />
+      </div>
+
+      <div class="input-group">
+        <label class="field-label" for="visitDate">Fecha del primer dia de parques *</label>
+        <input type="date" id="visitDate" required />
+      </div>
+
+      <div class="grid-2">
+        <div class="input-group">
+          <label class="field-label">Adultos (+10 años) *</label>
+          <div class="stepper-control">
+            <button type="button" class="stepper-btn" id="btnAdultMinus">−</button>
+            <span class="stepper-value" id="adultVal">2</span>
+            <button type="button" class="stepper-btn" id="btnAdultPlus">+</button>
+          </div>
+        </div>
+        <div class="input-group">
+          <label class="field-label">Menores (0 a 9 años)</label>
+          <div class="stepper-control">
+            <button type="button" class="stepper-btn" id="btnKidMinus">−</button>
+            <span class="stepper-value" id="kidVal">0</span>
+            <button type="button" class="stepper-btn" id="btnKidPlus">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="kidsAgeContainer" class="sub-section hidden">
+        <label class="field-label">Edades de los menores al momento de viajar *</label>
+        <div id="kidsAgeInputs" class="grid-2"></div>
+      </div>
+    </div>
+
+    <!-- 2. DESTINO -->
+    <div class="section-block">
+      <div class="section-title">2. Elige la Ciudad / Destino</div>
+
+      <div class="card-options">
+        <label class="card-choice">
+          <input type="radio" name="region" value="Orlando" checked />
+          <div class="card-box">
+            <span class="card-title">Orlando, Florida</span>
+            <span class="card-desc">Walt Disney World y Universal Orlando Resort.</span>
+          </div>
+        </label>
+
+        <label class="card-choice">
+          <input type="radio" name="region" value="California" />
+          <div class="card-box">
+            <span class="card-title">California</span>
+            <span class="card-desc">Disneyland Resort (Anaheim) y Universal Studios Hollywood.</span>
+          </div>
+        </label>
+      </div>
+    </div>
+
+    <!-- BLOQUE 1: DISNEY TICKETS -->
+    <div class="section-block" id="disneyBlock">
+      <div class="section-title" id="disneyTitle">3. Tickets Disney</div>
+
+      <div class="input-group">
+        <label class="field-label" id="disneyDaysLabel">Días de tickets Disney:</label>
+        <div class="stepper-control">
+          <button type="button" class="stepper-btn" id="btnDisneyDaysMinus">−</button>
+          <span class="stepper-value" id="disneyDaysVal">0</span>
+          <button type="button" class="stepper-btn" id="btnDisneyDaysPlus">+</button>
+        </div>
+      </div>
+
+      <!-- Contenedor desplegable de opciones Disney (se oculta en 0 días) -->
+      <div id="disneyOptionsWrapper" class="hidden">
+        <!-- Parques Disney Orlando -->
+        <div class="input-group" id="wdwParksContainer">
+          <label class="field-label">¿Qué parques Disney deseas visitar?</label>
+          <div class="pill-grid">
+            <label class="pill-checkbox">
+              <input type="checkbox" name="wdwParksChoice" value="Magic Kingdom" />
+              <div class="pill-label">
+                <div class="pill-label-row"><span>🏰</span> Magic Kingdom</div>
+                <div class="pill-label-desc">El castillo icónico y atracciones de cuentos de hadas.</div>
+              </div>
+            </label>
+            <label class="pill-checkbox">
+              <input type="checkbox" name="wdwParksChoice" value="Epcot" />
+              <div class="pill-label">
+                <div class="pill-label-row"><span>🌐</span> Epcot</div>
+                <div class="pill-label-desc">Pabellones mundiales, Guardians of the Galaxy y futuro.</div>
+              </div>
+            </label>
+            <label class="pill-checkbox">
+              <input type="checkbox" name="wdwParksChoice" value="Disney's Hollywood Studios" />
+              <div class="pill-label">
+                <div class="pill-label-row"><span>🎬</span> Disney's Hollywood Studios</div>
+                <div class="pill-label-desc">Star Wars: Galaxy's Edge, Toy Story Land y Tower of Terror.</div>
+              </div>
+            </label>
+            <label class="pill-checkbox">
+              <input type="checkbox" name="wdwParksChoice" value="Disney's Animal Kingdom" />
+              <div class="pill-label">
+                <div class="pill-label-row"><span>🦁</span> Disney's Animal Kingdom</div>
+                <div class="pill-label-desc">Pandora: The World of Avatar, safari y expedición Everest.</div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Parques Disneyland California -->
+        <div class="input-group hidden" id="dlrParksContainer">
+          <label class="field-label">¿Qué parques de Disneyland deseas visitar?</label>
+          <div class="pill-grid">
+            <label class="pill-checkbox">
+              <input type="checkbox" name="dlrParksChoice" value="Disneyland Park" />
+              <div class="pill-label">
+                <div class="pill-label-row"><span>🏰</span> Disneyland Park</div>
+                <div class="pill-label-desc">El parque original de Walt Disney y clásicos mágicos.</div>
+              </div>
+            </label>
+            <label class="pill-checkbox">
+              <input type="checkbox" name="dlrParksChoice" value="Disney California Adventure" />
+              <div class="pill-label">
+                <div class="pill-label-row"><span>🎡</span> Disney California Adventure</div>
+                <div class="pill-label-desc">Avengers Campus, Cars Land y Pixar Pier.</div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Park Hopper Disney -->
+        <div id="disneyHopperContainer" class="sub-section hidden">
+          <label class="field-label">Modalidad de acceso:</label>
+          <label class="pill-checkbox">
+            <input type="checkbox" id="disneyHopperCheck" value="Sí" />
+            <div class="pill-label">
+              <div class="pill-label-row"><span>🏰</span> Park Hopper</div>
+              <div class="pill-label-desc">Visita más de un parque Disney en el mismo día.</div>
+            </div>
+          </label>
+        </div>
+
+        <!-- Pase Rápido Disney (Lightning Lane) -->
+        <div class="input-group" style="margin-top: 14px;">
+          <label class="field-label">Pase rápido Disney:</label>
+          <label class="pill-checkbox">
+            <input type="checkbox" id="disneyLLCheck" value="Sí" />
+            <div class="pill-label">
+              <div class="pill-label-row"><span>⚡</span> Lightning Lane Multi Pass</div>
+              <div class="pill-label-desc">Ahorra tiempo en filas reservando accesos rápidos a las atracciones.</div>
+            </div>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOQUE 2: UNIVERSAL TICKETS -->
+    <div class="section-block" id="universalBlock">
+      <div class="section-title" id="universalTitle">4. Tickets Universal</div>
+
+      <div class="input-group">
+        <label class="field-label" id="universalDaysLabel">Días de tickets Universal:</label>
+        <div class="stepper-control">
+          <button type="button" class="stepper-btn" id="btnUniversalDaysMinus">−</button>
+          <span class="stepper-value" id="universalDaysVal">0</span>
+          <button type="button" class="stepper-btn" id="btnUniversalDaysPlus">+</button>
+        </div>
+      </div>
+
+      <!-- Contenedor desplegable de opciones Universal (se oculta en 0 días) -->
+      <div id="universalOptionsWrapper" class="hidden">
+        <!-- Parques Universal Orlando -->
+        <div class="input-group" id="universalOrlandoParksContainer">
+          <label class="field-label">¿Qué parques de Universal deseas visitar?</label>
+          <div class="pill-grid">
+            <label class="pill-checkbox">
+              <input type="checkbox" name="uoParksChoice" value="Universal Studios Florida" />
+              <div class="pill-label">
+                <div class="pill-label-row"><span>🎬</span> Universal Studios Florida</div>
+                <div class="pill-label-desc">Diagon Alley, Minions, Transformers y cine clásico.</div>
+              </div>
+            </label>
+            <label class="pill-checkbox">
+              <input type="checkbox" name="uoParksChoice" value="Universal Islands of Adventure" />
+              <div class="pill-label">
+                <div class="pill-label-row"><span>🦖</span> Universal Islands of Adventure</div>
+                <div class="pill-label-desc">VelociCoaster, Hogsmeade, Hagrid y Marvel Super Heroes.</div>
+              </div>
+            </label>
+            <label class="pill-checkbox">
+              <input type="checkbox" name="uoParksChoice" value="Epic Universe" />
+              <div class="pill-label">
+                <div class="pill-label-row"><span>🌌</span> Epic Universe</div>
+                <div class="pill-label-desc">El nuevo parque temático de clase mundial de Universal.</div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Parque Universal Hollywood -->
+        <div class="input-group hidden" id="universalHollywoodParksContainer">
+          <label class="field-label">Parque temático disponible:</label>
+          <div class="pill-grid">
+            <label class="pill-checkbox">
+              <input type="checkbox" name="ushParksChoice" value="Universal Studios Hollywood" checked disabled />
+              <div class="pill-label">
+                <div class="pill-label-row"><span>🎬</span> Universal Studios Hollywood</div>
+                <div class="pill-label-desc">Studio Tour de películas, Super Nintendo World y Jurassic World.</div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Park-to-Park Universal -->
+        <div id="universalParkToParkContainer" class="sub-section hidden">
+          <label class="field-label">Modalidad de acceso:</label>
+          <label class="pill-checkbox">
+            <input type="checkbox" id="universalParkToParkCheck" value="Sí" />
+            <div class="pill-label">
+              <div class="pill-label-row"><span>🚂</span> Park-to-Park</div>
+              <div class="pill-label-desc">Visita más de un parque por día (requerido para abordar el Expreso de Hogwarts entre Universal Studios Florida y Universal Islands of Adventure).</div>
+            </div>
+          </label>
+        </div>
+
+        <!-- Pase Rápido Universal (Universal Express) -->
+        <div class="input-group" style="margin-top: 14px;">
+          <label class="field-label">Pase rápido Universal:</label>
+          <label class="pill-checkbox">
+            <input type="checkbox" id="universalExpressCheck" value="Sí" />
+            <div class="pill-label">
+              <div class="pill-label-row"><span>⚡</span> Universal Express Pass</div>
+              <div class="pill-label-desc">Evita las filas convencionales en las atracciones más populares.</div>
+            </div>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOTÓN WHATSAPP -->
+    <button type="submit" class="btn-submit">
+      <svg viewBox="0 0 24 24">
+        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+      </svg>
+      Enviar mi Solicitud por WhatsApp
+    </button>
+    <p class="footer-note">Al hacer clic se abrirá tu WhatsApp con el mensaje estructurado para Wonder Way by Vio.</p>
+  </form>
+</div>
+
+<script>
+  const PHONE_NUMBER = "526561994244";
+
+  // Creador universal de Steppers táctiles
+  function setupStepper(btnMinusId, btnPlusId, valSpanId, min, max, initial, onChange) {
+    let current = initial;
+    const btnMinus = document.getElementById(btnMinusId);
+    const btnPlus = document.getElementById(btnPlusId);
+    const valSpan = document.getElementById(valSpanId);
+
+    function update() {
+      valSpan.textContent = current;
+      btnMinus.disabled = (current <= min);
+      btnPlus.disabled = (current >= max);
+      if (onChange) onChange(current);
+    }
+
+    btnMinus.addEventListener("click", () => {
+      if (current > min) {
+        current--;
+        update();
+      }
+    });
+
+    btnPlus.addEventListener("click", () => {
+      if (current < max) {
+        current++;
+        update();
+      }
+    });
+
+    update();
+
+    return {
+      get: () => current,
+      setLimits: (newMin, newMax) => {
+        min = newMin;
+        max = newMax;
+        if (current < min) current = min;
+        if (current > max) current = max;
+        update();
+      },
+      setVal: (v) => {
+        current = v;
+        update();
+      }
+    };
+  }
+
+  // 1. Adultos y Niños
+  const adultStepper = setupStepper("btnAdultMinus", "btnAdultPlus", "adultVal", 1, 14, 2);
+  const kidStepper = setupStepper("btnKidMinus", "btnKidPlus", "kidVal", 0, 10, 0, (count) => {
+    const kidsAgeContainer = document.getElementById("kidsAgeContainer");
+    const kidsAgeInputs = document.getElementById("kidsAgeInputs");
+    kidsAgeInputs.innerHTML = "";
+    if (count > 0) {
+      kidsAgeContainer.classList.remove("hidden");
+      for (let i = 1; i <= count; i++) {
+        const div = document.createElement("div");
+        div.className = "input-group";
+        div.innerHTML = `
+          <label class="field-label" style="font-size:0.8rem;">Edad Niño ${i}</label>
+          <div class="stepper-control">
+            <button type="button" class="stepper-btn age-btn-minus" data-idx="${i}">−</button>
+            <span class="stepper-value age-val" id="kidAgeVal_${i}">0</span>
+            <button type="button" class="stepper-btn age-btn-plus" data-idx="${i}">+</button>
+          </div>
+        `;
+        kidsAgeInputs.appendChild(div);
+
+        let ageVal = 0;
+        const minus = div.querySelector(".age-btn-minus");
+        const plus = div.querySelector(".age-btn-plus");
+        const span = div.querySelector(".age-val");
+        
+        minus.disabled = true;
+
+        minus.addEventListener("click", () => {
+          if (ageVal > 0) {
+            ageVal--;
+            span.textContent = ageVal;
+            minus.disabled = (ageVal <= 0);
+            plus.disabled = (ageVal >= 9);
+          }
+        });
+        plus.addEventListener("click", () => {
+          if (ageVal < 9) {
+            ageVal++;
+            span.textContent = ageVal;
+            minus.disabled = (ageVal <= 0);
+            plus.disabled = (ageVal >= 9);
+          }
+        });
+      }
+    } else {
+      kidsAgeContainer.classList.add("hidden");
+    }
+  });
+
+  const disneyOptionsWrapper = document.getElementById("disneyOptionsWrapper");
+  const universalOptionsWrapper = document.getElementById("universalOptionsWrapper");
+
+  // 2. Steppers de días de tickets (inician en 0 y ocultan opciones al ser 0)
+  const disneyDaysStepper = setupStepper("btnDisneyDaysMinus", "btnDisneyDaysPlus", "disneyDaysVal", 0, 10, 0, (days) => {
+    if (days > 0) {
+      disneyOptionsWrapper.classList.remove("hidden");
+    } else {
+      disneyOptionsWrapper.classList.add("hidden");
+      document.querySelectorAll('input[name="wdwParksChoice"], input[name="dlrParksChoice"]').forEach(cb => cb.checked = false);
+      document.getElementById("disneyHopperCheck").checked = false;
+      document.getElementById("disneyLLCheck").checked = false;
+      document.getElementById("disneyHopperContainer").classList.add("hidden");
+    }
+  });
+
+  const universalDaysStepper = setupStepper("btnUniversalDaysMinus", "btnUniversalDaysPlus", "universalDaysVal", 0, 10, 0, (days) => {
+    if (days > 0) {
+      universalOptionsWrapper.classList.remove("hidden");
+    } else {
+      universalOptionsWrapper.classList.add("hidden");
+      document.querySelectorAll('input[name="uoParksChoice"]').forEach(cb => cb.checked = false);
+      document.getElementById("universalParkToParkCheck").checked = false;
+      document.getElementById("universalExpressCheck").checked = false;
+      document.getElementById("universalParkToParkContainer").classList.add("hidden");
+    }
+  });
+
+  // Calendario
+  const visitDateInput = document.getElementById("visitDate");
+  function initCalendarLimits() {
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, "0");
+    const dd = String(today.getDate()).padStart(2, "0");
+    visitDateInput.min = `${yyyy}-${mm}-${dd}`;
+  }
+  initCalendarLimits();
+
+  const regionRadios = document.querySelectorAll('input[name="region"]');
+  const disneyTitle = document.getElementById("disneyTitle");
+  const universalTitle = document.getElementById("universalTitle");
+  
+  const wdwParksContainer = document.getElementById("wdwParksContainer");
+  const dlrParksContainer = document.getElementById("dlrParksContainer");
+  const disneyHopperContainer = document.getElementById("disneyHopperContainer");
+  const disneyHopperCheck = document.getElementById("disneyHopperCheck");
+
+  const universalOrlandoParksContainer = document.getElementById("universalOrlandoParksContainer");
+  const universalHollywoodParksContainer = document.getElementById("universalHollywoodParksContainer");
+  const universalParkToParkContainer = document.getElementById("universalParkToParkContainer");
+  const universalParkToParkCheck = document.getElementById("universalParkToParkCheck");
+
+  function getSelectedRegion() {
+    const el = document.querySelector('input[name="region"]:checked');
+    return el ? el.value : "Orlando";
+  }
+
+  // Lógica: Hopper Disney si seleccionan más de 1 parque
+  function updateDisneyHopper() {
+    const region = getSelectedRegion();
+    let selectedCount = 0;
+    if (region === "Orlando") {
+      selectedCount = document.querySelectorAll('input[name="wdwParksChoice"]:checked').length;
+    } else {
+      selectedCount = document.querySelectorAll('input[name="dlrParksChoice"]:checked').length;
+    }
+
+    if (selectedCount > 1 && disneyDaysStepper.get() > 0) {
+      disneyHopperContainer.classList.remove("hidden");
+    } else {
+      disneyHopperContainer.classList.add("hidden");
+      disneyHopperCheck.checked = false;
+    }
+  }
+
+  document.querySelectorAll('input[name="wdwParksChoice"], input[name="dlrParksChoice"]').forEach(cb => {
+    cb.addEventListener("change", updateDisneyHopper);
+  });
+
+  // Lógica: Park-to-Park Universal si seleccionan más de 1 parque (solo en Orlando)
+  function updateUniversalParkToPark() {
+    const region = getSelectedRegion();
+    if (region === "Orlando") {
+      const selectedCount = document.querySelectorAll('input[name="uoParksChoice"]:checked').length;
+      if (selectedCount > 1 && universalDaysStepper.get() > 0) {
+        universalParkToParkContainer.classList.remove("hidden");
+      } else {
+        universalParkToParkContainer.classList.add("hidden");
+        universalParkToParkCheck.checked = false;
+      }
+    } else {
+      universalParkToParkContainer.classList.add("hidden");
+      universalParkToParkCheck.checked = false;
+    }
+  }
+
+  document.querySelectorAll('input[name="uoParksChoice"]').forEach(cb => {
+    cb.addEventListener("change", updateUniversalParkToPark);
+  });
+
+  function updateRegionUI() {
+    const region = getSelectedRegion();
+
+    if (region === "Orlando") {
+      disneyTitle.textContent = "3. Tickets Walt Disney World";
+      universalTitle.textContent = "4. Tickets Universal Orlando Resort";
+
+      disneyDaysStepper.setLimits(0, 10);
+      universalDaysStepper.setLimits(0, 10);
+
+      wdwParksContainer.classList.remove("hidden");
+      dlrParksContainer.classList.add("hidden");
+      universalOrlandoParksContainer.classList.remove("hidden");
+      universalHollywoodParksContainer.classList.add("hidden");
+
+      document.querySelectorAll('input[name="dlrParksChoice"]').forEach(c => c.checked = false);
+    } else {
+      disneyTitle.textContent = "3. Tickets Disneyland California";
+      universalTitle.textContent = "4. Tickets Universal Studios Hollywood";
+
+      disneyDaysStepper.setLimits(0, 5);
+      universalDaysStepper.setLimits(0, 5);
+
+      wdwParksContainer.classList.add("hidden");
+      dlrParksContainer.classList.remove("hidden");
+      universalOrlandoParksContainer.classList.add("hidden");
+      universalHollywoodParksContainer.classList.remove("hidden");
+
+      document.querySelectorAll('input[name="wdwParksChoice"]').forEach(c => c.checked = false);
+      document.querySelectorAll('input[name="uoParksChoice"]').forEach(c => c.checked = false);
+    }
+
+    updateDisneyHopper();
+    updateUniversalParkToPark();
+  }
+
+  regionRadios.forEach(r => r.addEventListener("change", updateRegionUI));
+  updateRegionUI();
+
+  // Envío a WhatsApp
+  document.getElementById("ticketsForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const disneyDays = disneyDaysStepper.get();
+    const universalDays = universalDaysStepper.get();
+
+    // Validar que al menos se cotice un día en algún complejo
+    if (disneyDays === 0 && universalDays === 0) {
+      alert("Por favor, selecciona al menos 1 día de tickets para Disney o Universal.");
+      return;
+    }
+
+    const name = document.getElementById("fullName").value.trim();
+    const date = document.getElementById("visitDate").value;
+    const adults = adultStepper.get();
+    const kids = kidStepper.get();
+
+    let kidsAgeStr = "Sin menores";
+    if (kids > 0) {
+      const ages = [];
+      document.querySelectorAll(".age-val").forEach(inp => {
+        ages.push(inp.textContent + " a\u{00F1}os");
+      });
+      kidsAgeStr = ages.length > 0 ? ages.join(", ") : `${kids} menores (edades pendientes)`;
+    }
+
+    const region = getSelectedRegion();
+    const regionName = region === "Orlando" ? "Orlando, Florida" : "California";
+
+    // 1. Desglose Tickets Disney
+    let disneySummary = "No requeridos";
+    if (disneyDays > 0) {
+      const disneyParks = [];
+      if (region === "Orlando") {
+        document.querySelectorAll('input[name="wdwParksChoice"]:checked').forEach(c => disneyParks.push(c.value));
+      } else {
+        document.querySelectorAll('input[name="dlrParksChoice"]:checked').forEach(c => disneyParks.push(c.value));
+      }
+      const disneyParksStr = disneyParks.length > 0 ? disneyParks.join(", ") : "Por definir";
+      const hasDisneyHopper = disneyHopperCheck.checked ? " | Con Park Hopper" : "";
+      const hasDisneyLL = document.getElementById("disneyLLCheck").checked ? " | Con Lightning Lane" : "";
+      disneySummary = `${disneyDays} d\u{00ED}a(s)\n   - Parques: ${disneyParksStr}${hasDisneyHopper}${hasDisneyLL}`;
+    }
+
+    // 2. Desglose Tickets Universal
+    let universalSummary = "No requeridos";
+    if (universalDays > 0) {
+      const universalParks = [];
+      if (region === "Orlando") {
+        document.querySelectorAll('input[name="uoParksChoice"]:checked').forEach(c => universalParks.push(c.value));
+      } else {
+        universalParks.push("Universal Studios Hollywood");
+      }
+      const universalParksStr = universalParks.length > 0 ? universalParks.join(", ") : "Por definir";
+      const hasUniversalP2P = universalParkToParkCheck.checked ? " | Con Park-to-Park" : "";
+      const hasUniversalExpress = document.getElementById("universalExpressCheck").checked ? " | Con Universal Express" : "";
+      universalSummary = `${universalDays} d\u{00ED}a(s)\n   - Parques: ${universalParksStr}${hasUniversalP2P}${hasUniversalExpress}`;
+    }
+
+    // Armado estructurado del mensaje con secuencias Unicode oficiales de WhatsApp
+    const msg = 
+`\u{2728} *SOLICITUD DE TICKETS - WONDER WAY BY VIO* \u{2728}
+Hola Vio, me gustar\u{00ED}a cotizar tickets para parques tem\u{00E1}ticos:
+
+\u{1F464} *Titular:* ${name}
+\u{1F4C5} *Fecha estimada de visita:* ${date}
+\u{1F465} *Viajeros:* ${adults} Adulto(s) | ${kids} Menor(es)
+\u{1F476} *Edades de menores:* ${kidsAgeStr}
+
+\u{1F30E} *Destino:* ${regionName}
+
+\u{1F3F0} *Tickets Disney:* ${disneySummary}
+
+\u{1F3A2} *Tickets Universal:* ${universalSummary}
+
+\u{00A1}Quedo a la espera de las mejores tarifas y opciones vigentes!`;
+
+    const encodedMsg = encodeURIComponent(msg);
+    window.location.href = `https://api.whatsapp.com/send?phone=${PHONE_NUMBER}&text=${encodedMsg}`;
+  });
+</script>
+
+</body>
+</html>
