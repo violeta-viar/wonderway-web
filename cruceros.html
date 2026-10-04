@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wonder Way by Vio | Cotizador de Cruceros Disney</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --morado-dark: #1E0C36;
+      --morado-main: #3F1D6B;
+      --morado-soft: #F4EFFB;
+      --rosa-vibrante: #D94680;
+      --rosa-pastel: #FCE7F0;
+      --dorado: #C69A43;
+      --dorado-light: #F9F4EB;
+      --negro-texto: #17171C;
+      --gris-texto: #5E5D6A;
+      --gris-borde: #E6E4EB;
+      --blanco: #FFFFFF;
+      --fondo: #FAF8FD;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--fondo);
+      color: var(--negro-texto);
+      line-height: 1.5;
+      padding: 24px 14px 50px;
+    }
+
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      background: var(--blanco);
+      border-radius: 28px;
+      box-shadow: 0 16px 40px rgba(30, 12, 54, 0.08);
+      overflow: hidden;
+      border: 1px solid rgba(198, 154, 67, 0.25);
+    }
+
+    /* ENCABEZADO */
+    .header {
+      background: linear-gradient(135deg, var(--morado-dark) 0%, var(--morado-main) 70%, #532383 100%);
+      color: var(--blanco);
+      padding: 38px 20px 30px;
+      text-align: center;
+      position: relative;
+    }
+
+    .header::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--dorado), var(--rosa-vibrante), var(--dorado));
+    }
+
+    .logo-container {
+      width: 100%;
+      max-width: 280px;
+      height: 150px;
+      margin: 0 auto 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.3));
+    }
+
+    .brand-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.95rem;
+      font-weight: 700;
+      color: var(--blanco);
+    }
+
+    form {
+      padding: 26px 22px;
+    }
+
+    .section-block {
+      margin-bottom: 28px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--gris-borde);
+    }
+
+    .section-block:last-of-type {
+      border-bottom: none;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--morado-dark);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-subtitle {
+      font-size: 0.85rem;
+      color: var(--gris-texto);
+      margin-bottom: 16px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 580px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .input-group {
+      margin-bottom: 14px;
+    }
+
+    label.field-label {
+      display: block;
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: var(--morado-dark);
+      margin-bottom: 6px;
+    }
+
+    input[type="text"],
+    select {
+      width: 100%;
+      padding: 13px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--gris-borde);
+      background-color: #FAF9FC;
+      font-size: 0.95rem;
+      color: var(--negro-texto);
+      outline: none;
+      transition: all 0.25s ease;
+    }
+
+    input:focus,
+    select:focus {
+      border-color: var(--morado-main);
+      background-color: var(--blanco);
+      box-shadow: 0 0 0 3px rgba(63, 29, 107, 0.1);
+    }
+
+    /* CONTADORES INCREMENTALES TÁCTILES */
+    .stepper-control {
+      display: flex;
+      align-items: center;
+      background: #FAF9FC;
+      border: 1.5px solid var(--gris-borde);
+      border-radius: 14px;
+      overflow: hidden;
+      width: 100%;
+      max-width: 220px;
+    }
+
+    .stepper-btn {
+      width: 48px;
+      height: 48px;
+      background: #FAF9FC;
+      border: none;
+      color: var(--morado-main);
+      font-size: 1.4rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+      transition: background 0.15s ease;
+    }
+
+    .stepper-btn:active {
+      background: #E8DFF5;
+    }
+
+    .stepper-btn:disabled {
+      color: #BFBCC7;
+      cursor: not-allowed;
+      background: #F4F3F7;
+    }
+
+    .stepper-value {
+      flex: 1;
+      text-align: center;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--morado-dark);
+      user-select: none;
+    }
+
+    .help-badge {
+      display: inline-block;
+      background: var(--dorado-light);
+      color: #8c691f;
+      border: 1px solid #ebd9b5;
+      font-size: 0.76rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-top: 6px;
+    }
+
+    .notice-box {
+      background: #FDF9F2;
+      border: 1px solid #F1DEC0;
+      border-radius: 14px;
+      padding: 12px 14px;
+      font-size: 0.85rem;
+      color: #7A5714;
+      line-height: 1.4;
+      margin-top: 10px;
+      transition: all 0.25s ease;
+    }
+
+    /* Tarjetas de Selección */
+    .card-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    @media (max-width: 540px) {
+      .card-options {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card-choice {
+      position: relative;
+    }
+
+    .card-choice input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .card-box {
+      border: 1.5px solid var(--gris-borde);
+      border-radius: 14px;
+      padding: 14px 15px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      transition: all 0.2s ease;
+      background: var(--blanco);
+    }
+
+    .card-box:hover {
+      border-color: #d1b8ea;
+      transform: translateY(-1px);
+    }
+
+    .card-choice input:checked + .card-box {
+      border-color: var(--morado-main);
+      background-color: var(--morado-soft);
+      box-shadow: 0 6px 14px rgba(63, 29, 107, 0.08);
+    }
+
+    .card-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--morado-dark);
+      margin-bottom: 4px;
+    }
+
+    .card-desc {
+      font-size: 0.8rem;
+      color: var(--gris-texto);
+      line-height: 1.35;
+    }
+
+    .sub-section {
+      background: #FAF8FD;
+      border-radius: 16px;
+      padding: 16px;
+      border: 1px dashed #d8cde8;
+      margin-top: 14px;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .btn-submit {
+      width: 100%;
+      background: linear-gradient(135deg, var(--morado-dark) 0%, var(--morado-main) 100%);
+      color: var(--blanco);
+      border: 2px solid var(--dorado);
+      border-radius: 16px;
+      padding: 16px 20px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      transition: all 0.25s ease;
+      box-shadow: 0 10px 22px rgba(30, 12, 54, 0.2);
+    }
+
+    .btn-submit:hover {
+      background: linear-gradient(135deg, #130526 0%, #2f1253 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px rgba(30, 12, 54, 0.28);
+    }
+
+    .btn-submit svg {
+      width: 22px;
+      height: 22px;
+      fill: currentColor;
+    }
+
+    .footer-note {
+      font-size: 0.78rem;
+      color: #7b788a;
+      text-align: center;
+      margin-top: 14px;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <!-- ENCABEZADO CON TU LOGO OFICIAL -->
+  <header class="header">
+    <div class="logo-container">
+      <img src="logo.png" alt="Wonder Way by Vio" class="logo-img" />
+    </div>
+    <h1 class="brand-title">Cotizador de Cruceros Disney</h1>
+  </header>
+
+  <!-- FORMULARIO -->
+  <form id="cruiseForm">
+    <!-- 1. VIAJEROS Y CAMAROTES -->
+    <div class="section-block">
+      <div class="section-title">1. ¿Quiénes viajan y camarotes?</div>
+      <div class="section-subtitle">Las tarifas de cruceros se calculan por cabina según edades y capacidad.</div>
+
+      <div class="input-group">
+        <label class="field-label" for="fullName">Nombre completo del titular *</label>
+        <input type="text" id="fullName" placeholder="Ej. Mariana González" required />
+      </div>
+
+      <div class="grid-2">
+        <div class="input-group">
+          <label class="field-label">Adultos (+18 años) *</label>
+          <div class="stepper-control">
+            <button type="button" class="stepper-btn" id="btnAdultMinus">−</button>
+            <span class="stepper-value" id="adultVal">2</span>
+            <button type="button" class="stepper-btn" id="btnAdultPlus">+</button>
+          </div>
+        </div>
+        <div class="input-group">
+          <label class="field-label">Menores (0 a 17 años)</label>
+          <div class="stepper-control">
+            <button type="button" class="stepper-btn" id="btnKidMinus">−</button>
+            <span class="stepper-value" id="kidVal">0</span>
+            <button type="button" class="stepper-btn" id="btnKidPlus">+</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- DESPLIEGUE DINÁMICO DE EDADES PARA MENORES -->
+      <div id="kidsAgeContainer" class="sub-section hidden">
+        <label class="field-label">Edades de los menores al momento de navegar *</label>
+        <div id="kidsAgeInputs" class="grid-2"></div>
+        <div class="help-badge">Es indispensable para clubes de niños y tarifas de 3er/4to pasajero.</div>
+      </div>
+
+      <div class="input-group" style="margin-top: 16px;">
+        <label class="field-label">Número de camarotes (cabinas) deseados *</label>
+        <div class="stepper-control">
+          <button type="button" class="stepper-btn" id="btnRoomsMinus">−</button>
+          <span class="stepper-value" id="roomsVal">1</span>
+          <button type="button" class="stepper-btn" id="btnRoomsPlus">+</button>
+        </div>
+        <div id="roomNotice" class="notice-box">
+          ℹ️ Los camarotes de Disney Cruise Line permiten un <strong>máximo de 5 personas</strong> por cabina.
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. FECHA DE VIAJE (MES Y AÑO) -->
+    <div class="section-block">
+      <div class="section-title">2. Fecha estimada de viaje</div>
+      <div class="section-subtitle">Selecciona el mes y año tentativos en los que planeas zarpar.</div>
+
+      <div class="grid-2">
+        <div class="input-group">
+          <label class="field-label" for="travelMonth">Mes de viaje *</label>
+          <select id="travelMonth" required>
+            <option value="Enero">Enero</option>
+            <option value="Febrero">Febrero</option>
+            <option value="Marzo">Marzo</option>
+            <option value="Abril">Abril</option>
+            <option value="Mayo">Mayo</option>
+            <option value="Junio">Junio</option>
+            <option value="Julio">Julio</option>
+            <option value="Agosto">Agosto</option>
+            <option value="Septiembre">Septiembre</option>
+            <option value="Octubre">Octubre</option>
+            <option value="Noviembre">Noviembre</option>
+            <option value="Diciembre">Diciembre</option>
+          </select>
+        </div>
+
+        <div class="input-group">
+          <label class="field-label" for="travelYear">Año de viaje *</label>
+          <select id="travelYear" required>
+            <option value="2026">2026</option>
+            <option value="2027">2027</option>
+            <option value="2028">2028</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. DURACIÓN DEL CRUCERO (Siempre visible) -->
+    <div class="section-block">
+      <div class="section-title">3. Duración del crucero</div>
+      <div class="section-subtitle">¿Cuántas noches te gustaría navegar a bordo?</div>
+
+      <div class="card-options">
+        <label class="card-choice">
+          <input type="radio" name="cruiseDuration" value="3 a 4 noches" checked />
+          <div class="card-box">
+            <span class="card-title">3 a 4 noches</span>
+            <span class="card-desc">Escapada clásica perfecta para primerizos con visita a islas privadas.</span>
+          </div>
+        </label>
+
+        <label class="card-choice">
+          <input type="radio" name="cruiseDuration" value="5 a 6 noches" />
+          <div class="card-box">
+            <span class="card-title">5 a 6 noches</span>
+            <span class="card-desc">Equilibrio ideal entre puertos tropicales y días de relajación en alta mar.</span>
+          </div>
+        </label>
+
+        <label class="card-choice">
+          <input type="radio" name="cruiseDuration" value="7 a 8 noches" />
+          <div class="card-box">
+            <span class="card-title">7 a 8 noches</span>
+            <span class="card-desc">La experiencia completa con más puertos y actividades a bordo.</span>
+          </div>
+        </label>
+
+        <label class="card-choice">
+          <input type="radio" name="cruiseDuration" value="9 a 13 noches" />
+          <div class="card-box">
+            <span class="card-title">9 a 13 noches</span>
+            <span class="card-desc">Itinerarios extendidos de exploración profunda y descanso total.</span>
+          </div>
+        </label>
+
+        <label class="card-choice" style="grid-column: 1 / -1;">
+          <input type="radio" name="cruiseDuration" value="14 noches" />
+          <div class="card-box">
+            <span class="card-title">14 noches</span>
+            <span class="card-desc">Grandes travesías transatlánticas o cruces mágicos por el Canal de Panamá.</span>
+          </div>
+        </label>
+      </div>
+    </div>
+
+    <!-- 4. DESTINO DESEADO (Información verificada de puertos e islas) -->
+    <div class="section-block">
+      <div class="section-title">4. Destino de navegación</div>
+      <div class="section-subtitle">Selecciona el itinerario que deseas explorar.</div>
+
+      <div class="card-options">
+        <label class="card-choice">
+          <input type="radio" name="cruiseDestination" value="Crucero por Bahamas" checked />
+          <div class="card-box">
+            <span class="card-title">Crucero por Bahamas</span>
+            <span class="card-desc">Salidas desde Port Canaveral y Fort Lauderdale con llegada a la isla privada Castaway Cay.</span>
+          </div>
+        </label>
+
+        <label class="card-choice">
+          <input type="radio" name="cruiseDestination" value="Crucero por el Caribe" />
+          <div class="card-box">
+            <span class="card-title">Crucero por el Caribe</span>
+            <span class="card-desc">Caribe oriental, occidental y sur, con visitas a Castaway Cay y Disney Lookout Cay at Lighthouse Point.</span>
+          </div>
+        </label>
+
+        <label class="card-choice">
+          <input type="radio" name="cruiseDestination" value="Crucero por Bermudas" />
+          <div class="card-box">
+            <span class="card-title">Crucero por Bermudas</span>
+            <span class="card-desc">Playas de arena rosa, arrecifes de coral y visitas a Castaway Cay y Disney Lookout Cay at Lighthouse Point.</span>
+          </div>
+        </label>
+
+        <label class="card-choice">
+          <input type="radio" name="cruiseDestination" value="Crucero por Alaska" />
+          <div class="card-box">
+            <span class="card-title">Crucero por Alaska</span>
+            <span class="card-desc">Glaciares, vida silvestre imponente y fiordos majestuosos saliendo desde Vancouver.</span>
+          </div>
+        </label>
+
+        <label class="card-choice">
+          <input type="radio" name="cruiseDestination" value="Crucero por México" />
+          <div class="card-box">
+            <span class="card-title">Crucero por México</span>
+            <span class="card-desc">Salidas desde San Diego a Baja California y Riviera Mexicana (Cabo San Lucas, Puerto Vallarta, Mazatlán y Ensenada).</span>
+          </div>
+        </label>
+
+        <label class="card-choice">
+          <input type="radio" name="cruiseDestination" value="Crucero por Canadá" />
+          <div class="card-box">
+            <span class="card-title">Crucero por Canadá</span>
+            <span class="card-desc">Ciudades costeras históricas y paisajes otoñales (Halifax, Saint John) saliendo desde Nueva York.</span>
+          </div>
+        </label>
+
+        <label class="card-choice">
+          <input type="radio" name="cruiseDestination" value="Crucero por la Costa del Pacífico" />
+          <div class="card-box">
+            <span class="card-title">Crucero por la Costa del Pacífico</span>
+            <span class="card-desc">Travesías escénicas por la costa oeste saliendo desde San Diego o Vancouver.</span>
+          </div>
+        </label>
+
+        <label class="card-choice">
+          <input type="radio" name="cruiseDestination" value="Crucero por el Canal de Panamá" />
+          <div class="card-box">
+            <span class="card-title">Crucero por el Canal de Panamá</span>
+            <span class="card-desc">Travesías de 14 noches cruzando el canal entre San Diego y Galveston con paradas en México, Colombia y Panamá.</span>
+          </div>
+        </label>
+
+        <label class="card-choice">
+          <input type="radio" name="cruiseDestination" value="Crucero por Europa" />
+          <div class="card-box">
+            <span class="card-title">Crucero por Europa</span>
+            <span class="card-desc">Rutas por el Mediterráneo, islas griegas, fiordos noruegos e islas británicas.</span>
+          </div>
+        </label>
+
+        <label class="card-choice">
+          <input type="radio" name="cruiseDestination" value="Crucero Transatlántico" />
+          <div class="card-box">
+            <span class="card-title">Crucero Transatlántico</span>
+            <span class="card-desc">Travesía oceánica histórica zarpando desde Southampton (Inglaterra) hacia Nueva York.</span>
+          </div>
+        </label>
+
+        <label class="card-choice" style="grid-column: 1 / -1;">
+          <input type="radio" name="cruiseDestination" value="Crucero por Singapur" />
+          <div class="card-box">
+            <span class="card-title">Crucero por Singapur</span>
+            <span class="card-desc">Salidas desde Singapur para explorar el Sudeste Asiático a bordo del nuevo Disney Adventure.</span>
+          </div>
+        </label>
+      </div>
+    </div>
+
+    <!-- 5. BARCO PREFERIDO (DINÁMICO SEGÚN EL DESTINO) -->
+    <div class="section-block" id="shipsSection">
+      <div class="section-title">5. Barco Disney preferido</div>
+      <div class="section-subtitle" id="shipsSubtitle">Barcos disponibles para el destino seleccionado:</div>
+
+      <div class="card-options" id="shipsGrid">
+        <!-- Renderizado dinámicamente con JavaScript -->
+      </div>
+    </div>
+
+    <!-- BOTÓN WHATSAPP -->
+    <button type="submit" class="btn-submit">
+      <svg viewBox="0 0 24 24">
+        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+      </svg>
+      Enviar mi Solicitud de Crucero por WhatsApp
+    </button>
+    <p class="footer-note">Al hacer clic se abrirá tu WhatsApp con el mensaje estructurado para Wonder Way by Vio.</p>
+  </form>
+</div>
+
+<script>
+  const PHONE_NUMBER = "526561994244";
+
+  // Catálogo formal de barcos
+  const SHIPS_DATA = {
+    "magic": {
+      name: "Disney Magic",
+      style: "Clase Classic • Íntimo",
+      desc: "AquaDunk y restaurante Rapunzel's Royal Table."
+    },
+    "wonder": {
+      name: "Disney Wonder",
+      style: "Clase Classic • Tradicional",
+      desc: "Tiana's Place (The Princess and the Frog) y Frozen: A Musical Spectacular."
+    },
+    "dream": {
+      name: "Disney Dream",
+      style: "Clase Dream • Elegante y familiar",
+      desc: "Montaña rusa acuática AquaDuck y salones de Finding Nemo."
+    },
+    "fantasy": {
+      name: "Disney Fantasy",
+      style: "Clase Dream • Estilo trasatlántico",
+      desc: "AquaDuck, alta cocina y entretenimiento clásico Disney."
+    },
+    "wish": {
+      name: "Disney Wish",
+      style: "Clase Wish • Cuentos de hadas",
+      desc: "AquaMouse, Arendelle (Frozen Dining) y Star Wars: Hyperspace Lounge."
+    },
+    "treasure": {
+      name: "Disney Treasure",
+      style: "Clase Wish • Aventura y exploración",
+      desc: "Plaza de Coco, Haunted Mansion Parlor y Jungle Cruise Lounge."
+    },
+    "destiny": {
+      name: "Disney Destiny",
+      style: "Clase Wish • Héroes y Villanos",
+      desc: "Espacios de héroes icónicos, Pixar y temática de villanos."
+    },
+    "adventure": {
+      name: "Disney Adventure",
+      style: "Megaresort • Sudeste Asiático",
+      desc: "Montaña rusa Ironcycle Test Run, áreas inmersivas de Marvel y Pixar."
+    }
+  };
+
+  // Mapeo exacto configurado según tus indicaciones
+  const SHIPS_BY_DESTINATION = {
+    "Crucero por Alaska": ["wonder", "magic"],
+    "Crucero por Canadá": ["wish"],
+    "Crucero por el Canal de Panamá": ["magic"],
+    "Crucero por el Caribe": ["magic", "dream", "wish", "fantasy", "treasure", "destiny"],
+    "Crucero por Europa": ["wish"],
+    "Crucero por la Costa del Pacífico": ["magic", "wonder"],
+    "Crucero por Bahamas": ["magic", "dream", "wish", "wonder", "fantasy", "treasure", "destiny"],
+    "Crucero por Bermudas": ["wish", "fantasy"],
+    "Crucero por México": ["magic", "wonder"],
+    "Crucero Transatlántico": ["wish"],
+    "Crucero por Singapur": ["adventure"]
+  };
+
+  // Creador universal de Steppers táctiles
+  function setupStepper(btnMinusId, btnPlusId, valSpanId, min, max, initial, onChange) {
+    let current = initial;
+    const btnMinus = document.getElementById(btnMinusId);
+    const btnPlus = document.getElementById(btnPlusId);
+    const valSpan = document.getElementById(valSpanId);
+
+    function update() {
+      valSpan.textContent = current;
+      btnMinus.disabled = (current <= min);
+      btnPlus.disabled = (current >= max);
+      if (onChange) onChange(current);
+    }
+
+    btnMinus.addEventListener("click", () => {
+      if (current > min) {
+        current--;
+        update();
+      }
+    });
+
+    btnPlus.addEventListener("click", () => {
+      if (current < max) {
+        current++;
+        update();
+      }
+    });
+
+    update();
+
+    return {
+      get: () => current,
+      setLimits: (newMin, newMax) => {
+        min = newMin;
+        max = newMax;
+        if (current < min) current = min;
+        if (current > max) current = max;
+        update();
+      },
+      setVal: (v) => {
+        current = v;
+        update();
+      }
+    };
+  }
+
+  function getSelected(name) {
+    const el = document.querySelector(`input[name="${name}"]:checked`);
+    return el ? el.value : "";
+  }
+
+  // 1. Declarar variables de los steppers
+  let adultStepper;
+  let kidStepper;
+  let roomsStepper;
+
+  // Función segura para actualizar límites de cabinas (máximo 5 personas por camarote)
+  function updateRoomCapacityLimits() {
+    if (!adultStepper || !kidStepper || !roomsStepper) return;
+
+    const totalPassengers = adultStepper.get() + kidStepper.get();
+    const minRoomsNeeded = Math.max(1, Math.ceil(totalPassengers / 5));
+    const currentRooms = roomsStepper.get();
+
+    roomsStepper.setLimits(minRoomsNeeded, 6);
+    if (currentRooms < minRoomsNeeded) {
+      roomsStepper.setVal(minRoomsNeeded);
+    }
+
+    const roomNotice = document.getElementById("roomNotice");
+    if (totalPassengers > 5) {
+      roomNotice.innerHTML = `⚠️ Al ser <strong>${totalPassengers} viajeros</strong> en total, se requieren como mínimo <strong>${minRoomsNeeded} camarotes</strong> (máximo 5 personas por cabina).`;
+      roomNotice.style.borderColor = "#E8A246";
+      roomNotice.style.background = "#FFF9F0";
+    } else {
+      roomNotice.innerHTML = `ℹ️ Los camarotes de Disney Cruise Line permiten un <strong>máximo de 5 personas</strong> por cabina.`;
+      roomNotice.style.borderColor = "#F1DEC0";
+      roomNotice.style.background = "#FDF9F2";
+    }
+  }
+
+  // 2. Inicialización limpia de los 3 steppers
+  adultStepper = setupStepper("btnAdultMinus", "btnAdultPlus", "adultVal", 1, 14, 2, () => {
+    updateRoomCapacityLimits();
+  });
+
+  kidStepper = setupStepper("btnKidMinus", "btnKidPlus", "kidVal", 0, 10, 0, (count) => {
+    const kidsAgeContainer = document.getElementById("kidsAgeContainer");
+    const kidsAgeInputs = document.getElementById("kidsAgeInputs");
+    kidsAgeInputs.innerHTML = "";
+
+    if (count > 0) {
+      kidsAgeContainer.classList.remove("hidden");
+      for (let i = 1; i <= count; i++) {
+        const div = document.createElement("div");
+        div.className = "input-group";
+        div.innerHTML = `
+          <label class="field-label" style="font-size:0.8rem;">Edad Menor ${i}</label>
+          <div class="stepper-control">
+            <button type="button" class="stepper-btn age-btn-minus" data-idx="${i}">−</button>
+            <span class="stepper-value age-val" id="kidAgeVal_${i}">0</span>
+            <button type="button" class="stepper-btn age-btn-plus" data-idx="${i}">+</button>
+          </div>
+        `;
+        kidsAgeInputs.appendChild(div);
+
+        let ageVal = 0;
+        const minus = div.querySelector(".age-btn-minus");
+        const plus = div.querySelector(".age-btn-plus");
+        const span = div.querySelector(".age-val");
+        
+        minus.disabled = true;
+
+        minus.addEventListener("click", () => {
+          if (ageVal > 0) {
+            ageVal--;
+            span.textContent = ageVal;
+            minus.disabled = (ageVal <= 0);
+            plus.disabled = (ageVal >= 17);
+          }
+        });
+        plus.addEventListener("click", () => {
+          if (ageVal < 17) {
+            ageVal++;
+            span.textContent = ageVal;
+            minus.disabled = (ageVal <= 0);
+            plus.disabled = (ageVal >= 17);
+          }
+        });
+      }
+    } else {
+      kidsAgeContainer.classList.add("hidden");
+    }
+
+    updateRoomCapacityLimits();
+  });
+
+  roomsStepper = setupStepper("btnRoomsMinus", "btnRoomsPlus", "roomsVal", 1, 6, 1);
+
+  // Primera evaluación tras estar los 3 inicializados
+  updateRoomCapacityLimits();
+
+  // Renderizar barcos según el destino elegido
+  const shipsGrid = document.getElementById("shipsGrid");
+
+  function updateShipsByDestination() {
+    const selectedDestination = getSelected("cruiseDestination");
+    const shipKeys = SHIPS_BY_DESTINATION[selectedDestination] || SHIPS_BY_DESTINATION["Crucero por Bahamas"];
+
+    let html = `
+      <label class="card-choice" style="grid-column: 1 / -1;">
+        <input type="radio" name="cruiseShip" value="Sin preferencia (el mejor disponible)" checked />
+        <div class="card-box">
+          <span class="card-title">✨ Sin preferencia / El más recomendado</span>
+          <span class="card-desc">Quiero que Vio seleccione el barco con mejor itinerario y tarifa.</span>
+        </div>
+      </label>
+    `;
+
+    shipKeys.forEach(key => {
+      const ship = SHIPS_DATA[key];
+      if (ship) {
+        html += `
+          <label class="card-choice">
+            <input type="radio" name="cruiseShip" value="${ship.name}" />
+            <div class="card-box">
+              <span class="card-title">🚢 ${ship.name}</span>
+              <span class="card-desc"><strong>${ship.style}:</strong> ${ship.desc}</span>
+            </div>
+          </label>
+        `;
+      }
+    });
+
+    shipsGrid.innerHTML = html;
+  }
+
+  document.querySelectorAll('input[name="cruiseDestination"]').forEach(radio => {
+    radio.addEventListener("change", updateShipsByDestination);
+  });
+
+  // Inicializar barcos al cargar
+  updateShipsByDestination();
+
+  // Envío a WhatsApp
+  document.getElementById("cruiseForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById("fullName").value.trim();
+    const adults = adultStepper.get();
+    const kids = kidStepper.get();
+    const rooms = roomsStepper.get();
+
+    let kidsAgeStr = "Sin menores";
+    if (kids > 0) {
+      const ages = [];
+      document.querySelectorAll(".age-val").forEach(inp => {
+        ages.push(inp.textContent + " a\u{00F1}os");
+      });
+      kidsAgeStr = ages.length > 0 ? ages.join(", ") : `${kids} menores (edades pendientes)`;
+    }
+
+    const month = document.getElementById("travelMonth").value;
+    const year = document.getElementById("travelYear").value;
+    const duration = getSelected("cruiseDuration");
+    const destination = getSelected("cruiseDestination");
+    const ship = getSelected("cruiseShip") || "Sin preferencia";
+
+    const msg = 
+`\u{2728} *SOLICITUD DE CRUCERO DISNEY - WONDER WAY BY VIO* \u{2728}
+Hola Vio, me gustar\u{00ED}a cotizar un viaje con Disney Cruise Line:
+
+\u{1F464} *Titular:* ${name}
+\u{1F4C5} *Fecha estimada:* ${month} de ${year}
+\u{1F465} *Viajeros:* ${adults} Adulto(s) | ${kids} Menor(es)
+\u{1F476} *Edades de menores:* ${kidsAgeStr}
+\u{1F6CF}\u{FE0F} *Camarotes solicitados:* ${rooms} cabina(s)
+
+\u{23F1}\u{FE0F} *Duraci\u{00F3}n deseada:* ${duration}
+\u{1F30E} *Destino:* ${destination}
+\u{1F6A2} *Barco preferido:* ${ship}
+
+\u{00A1}Quedo a la espera de las mejores opciones e itinerarios para mi familia!`;
+
+    const encodedMsg = encodeURIComponent(msg);
+    window.location.href = `https://api.whatsapp.com/send?phone=${PHONE_NUMBER}&text=${encodedMsg}`;
+  });
+</script>
+
+</body>
+</html>
